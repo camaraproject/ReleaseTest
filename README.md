@@ -26,7 +26,6 @@ Test repository for end-to-end validation of the automated release workflow. Con
 ## Release Information
 
 The repository has no (pre)releases yet, work in progress is within the main branch.
-
 <!-- CAMARA:RELEASE-INFO:END -->
 
 ## Contributing
