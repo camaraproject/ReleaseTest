@@ -25,8 +25,16 @@ Test repository for end-to-end validation of the automated release workflow. Con
 
 ## Release Information
 
-The repository has no (pre)releases yet, work in progress is within the main branch.
+> [!NOTE]
+> This repository has only pre-release versions available yet. Pre-releases are for testing and may change before public release.
 
+* The latest pre-release is [r1.1](https://github.com/camaraproject/ReleaseTest/releases/tag/r1.1) (pre-release), with the following API versions:
+  * **placeholder-entry 0.1.0-alpha.1**
+  [[YAML]](https://github.com/camaraproject/ReleaseTest/blob/r1.1/code/API_definitions/placeholder-entry.yaml)  [[ReDoc]](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/ReleaseTest/r1.1/code/API_definitions/placeholder-entry.yaml&nocors)  [[Swagger]](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/ReleaseTest/r1.1/code/API_definitions/placeholder-entry.yaml)
+
+* For changes see [CHANGELOG.md](https://github.com/camaraproject/ReleaseTest/blob/main/CHANGELOG.md)
+
+_The above section is automatically synchronized by CAMARA project-administration._
 <!-- CAMARA:RELEASE-INFO:END -->
 
 ## Contributing
