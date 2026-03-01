@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: CAMARA Release Test
+  title: Release Test
   description: |
     Minimal test definition for validating the CAMARA release automation workflow.
     This is not a real API — it exists solely for end-to-end testing.
