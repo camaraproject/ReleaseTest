@@ -39,4 +39,3 @@ apis:
     main_contacts:
       - hdamker-bot
 
-# E2E test: verify PLANNED state refresh (IMP-070)
