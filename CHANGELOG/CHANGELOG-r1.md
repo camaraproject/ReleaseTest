@@ -45,7 +45,7 @@ The API definition(s) are based on
 
 ## release-test 1.0.0-rc.1
 
-**release-test 1.0.0-rc.1 is ...**
+**release-test 1.0.0-rc.1 adds the basic test definitions for the API**
 
 - API definition **with inline documentation**:
   - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/ReleaseTest/r1.2/code/API_definitions/release-test.yaml&nocors)
@@ -54,7 +54,7 @@ The API definition(s) are based on
 
 ### Added
 
-* _To be filled during release review_
+* Add test definition file release-test-getStatus.feature by @hdamker-bot in https://github.com/camaraproject/ReleaseTest/pull/28
 
 ### Changed
 
