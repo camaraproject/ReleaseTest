@@ -2,6 +2,7 @@
 
 <!-- TOC:START -->
 ## Table of Contents
+- [r1.2](#r12)
 - [r1.1](#r11)
 <!-- TOC:END -->
 
@@ -13,6 +14,44 @@ The below sections record the changes for each API version in each release as fo
 * for the first release-candidate, all changes since the last public release
 * for subsequent release-candidate(s), only the delta to the previous release-candidate
 * for a public release, the consolidated changes since the previous public release
+
+# r1.2
+
+## Release Notes
+
+This release candidate contains the definition and documentation of
+* Release Test 1.0.0-rc.1
+
+The API definition(s) are based on
+* Commonalities r4.1
+* Identity and Consent Management r4.1
+
+## release-test 1.0.0-rc.1
+
+**release-test 1.0.0-rc.1 adds the basic test definitions for the API**
+
+- API definition **with inline documentation**:
+  - [View it on ReDoc](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/ReleaseTest/r1.2/code/API_definitions/release-test.yaml&nocors)
+  - [View it on Swagger Editor](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/ReleaseTest/r1.2/code/API_definitions/release-test.yaml)
+  - OpenAPI [YAML spec file](https://github.com/camaraproject/ReleaseTest/blob/r1.2/code/API_definitions/release-test.yaml)
+
+### Added
+
+* Add test definition file release-test-getStatus.feature by @hdamker-bot in https://github.com/camaraproject/ReleaseTest/pull/28
+
+### Changed
+
+* _To be filled during release review_
+
+### Fixed
+
+* _To be filled during release review_
+
+### Removed
+
+* _To be filled during release review_
+
+**Full Changelog**: https://github.com/camaraproject/ReleaseTest/compare/r1.1...r1.2
 
 # r1.1
 
