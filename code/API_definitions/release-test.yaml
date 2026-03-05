@@ -4,8 +4,8 @@ info:
   description: |
     Minimal test definition for validating the CAMARA release automation workflow.
     This is not a real API — it exists solely for end-to-end testing.
-  version: wip
-  x-camara-commonalities: 0.6
+  version: 1.0.0-rc.1
+  x-camara-commonalities: r4.1
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
@@ -13,7 +13,7 @@ externalDocs:
   description: Product documentation at CAMARA
   url: https://github.com/camaraproject/TestRepo
 servers:
-  - url: "{apiRoot}/release-test/vwip"
+  - url: "{apiRoot}/release-test/v1rc1"
     variables:
       apiRoot:
         default: https://localhost:443
