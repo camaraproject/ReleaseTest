@@ -37,7 +37,7 @@ The API definition(s) are based on
 
 ## What's Changed
 * Release Automation: Post-release sync (r1.1) by @camara-release-automation[bot] in https://github.com/camaraproject/ReleaseTest/pull/22
-* Add test definition file release-test-getStatus.feature by @hdamker-bot in https://github.com/camaraproject/ReleaseTest/pull/28
+
 * Update release-plan.yaml by @hdamker-bot in https://github.com/camaraproject/ReleaseTest/pull/37
 
 </details>
@@ -54,19 +54,7 @@ The API definition(s) are based on
 
 ### Added
 
-* _To be filled during release review_
-
-### Changed
-
-* _To be filled during release review_
-
-### Fixed
-
-* _To be filled during release review_
-
-### Removed
-
-* _To be filled during release review_
+* Added test definition file release-test-getStatus.feature by @hdamker-bot in https://github.com/camaraproject/ReleaseTest/pull/28
 
 **Full Changelog**: https://github.com/camaraproject/ReleaseTest/compare/r1.1...r1.2
 
