@@ -28,9 +28,9 @@ Test repository for end-to-end validation of the automated release workflow. Con
 > [!NOTE]
 > This repository has only pre-release versions available yet. Pre-releases are for testing and may change before public release.
 
-* The latest pre-release is [r1.2](https://github.com/camaraproject/ReleaseTest/releases/tag/r1.2) (release candidate), with the following API versions:
-  * **release-test 1.0.0-rc.1**
-  [[YAML]](https://github.com/camaraproject/ReleaseTest/blob/r1.2/code/API_definitions/release-test.yaml)  [[ReDoc]](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/ReleaseTest/r1.2/code/API_definitions/release-test.yaml&nocors)  [[Swagger]](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/ReleaseTest/r1.2/code/API_definitions/release-test.yaml)
+* The latest pre-release is [r1.3](https://github.com/camaraproject/ReleaseTest/releases/tag/r1.3) (release candidate), with the following API versions:
+  * **release-test 1.0.0-rc.2**
+  [[YAML]](https://github.com/camaraproject/ReleaseTest/blob/r1.3/code/API_definitions/release-test.yaml)  [[ReDoc]](https://redocly.github.io/redoc/?url=https://raw.githubusercontent.com/camaraproject/ReleaseTest/r1.3/code/API_definitions/release-test.yaml&nocors)  [[Swagger]](https://camaraproject.github.io/swagger-ui/?url=https://raw.githubusercontent.com/camaraproject/ReleaseTest/r1.3/code/API_definitions/release-test.yaml)
 
 * For changes see [CHANGELOG](https://github.com/camaraproject/ReleaseTest/tree/main/CHANGELOG)
 
