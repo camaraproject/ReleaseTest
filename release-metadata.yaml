@@ -2,7 +2,7 @@ repository:
   repository_name: ReleaseTest
   release_tag: r1.3
   release_type: pre-release-rc
-  release_date: null
+  release_date: '2026-03-10T09:09:23Z'
   src_commit_sha: 8715f8498e469a31b35f680335c81bd392f48b44
 apis:
 - api_name: release-test
