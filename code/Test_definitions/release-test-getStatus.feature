@@ -1,4 +1,4 @@
-Feature: CAMARA Release Test API, vwip - Operation: getStatus
+Feature: CAMARA Release Test API, 1.0.0-rc.3 - Operation: getStatus
 
   # Input to be provided by the implementation to the tests
   # References to OAS spec schemas refer to schemas specified in /code/API_definitions/release-test.yaml
@@ -10,7 +10,7 @@ Feature: CAMARA Release Test API, vwip - Operation: getStatus
 
   Background: Common Release Test getStatus setup
     Given an environment at "apiRoot"
-    And the resource "/release-test/vwip/status"
+    And the resource "/release-test/v1rc3/status"
     And the header "Authorization" is set to a valid access token
     And the header "x-correlator" complies with the schema at "#/components/schemas/XCorrelator"
 
