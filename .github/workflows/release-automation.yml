@@ -54,10 +54,12 @@ permissions:
   contents: write
   issues: write
   pull-requests: write
+  id-token: write
 
 jobs:
   release-automation:
     # Skip if:
+    # - issue_comment from a Bot (release automation bot comments, not human commands)
     # - issue_comment but not a release command or not on a release issue
     # - issues event but not a release issue
     # - pull_request but not merged or not to a snapshot branch
@@ -65,6 +67,7 @@ jobs:
       (github.event_name == 'push') ||
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'issue_comment' &&
+       github.event.comment.user.type != 'Bot' &&
        contains(github.event.issue.labels.*.name, 'release-issue') &&
        (startsWith(github.event.comment.body, '/create-snapshot') ||
         startsWith(github.event.comment.body, '/discard-snapshot') ||
@@ -78,4 +81,6 @@ jobs:
        startsWith(github.event.pull_request.base.ref, 'release-snapshot/'))
 
     uses: camaraproject/tooling/.github/workflows/release-automation-reusable.yml@release-automation
+    # with:
+    #   tooling_ref_override: "0123456789abcdef0123456789abcdef01234567"  # Optional break-glass SHA override (requires workflow file change)
     secrets: inherit
