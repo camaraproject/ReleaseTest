@@ -18,6 +18,9 @@ servers:
       apiRoot:
         default: https://localhost:443
         description: API root
+tags:
+  - name: Status
+    description: Service status operations
 paths:
   /status:
     get:
