@@ -1,0 +1,147 @@
+openapi: 3.0.3
+info:
+  title: Release Test Notifications
+  description: |
+    Test API for notification subscription management.
+    This is not a real API — it exists solely for validation framework testing.
+  version: wip
+  x-camara-commonalities: 0.6
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+externalDocs:
+  description: Product documentation at CAMARA
+  url: https://github.com/camaraproject/TestRepo
+servers:
+  - url: "{apiRoot}/release-test-notifications/vwip"
+    variables:
+      apiRoot:
+        default: https://localhost:443
+        description: API root
+tags:
+  - name: Subscriptions
+    description: Subscription management operations
+paths:
+  /subscriptions:
+    post:
+      operationId: CreateSubscription
+      summary: Create a new notification subscription
+      description: Creates a subscription for receiving event notifications via webhook callback.
+      tags: 
+        - Subscriptions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/subscriptionRequest"
+      responses:
+        "201":
+          description: Subscription created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Subscription"
+    get: 
+      operationId: listSubscriptions
+      summary: List subscriptions
+      description: Returns a list of active notification subscriptions.
+      tags:
+        - Subscriptions
+      parameters:
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+      responses:
+        "200":
+          description: Subscriptions listed
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Subscription"
+  /subscriptions/{subscriptionId}:
+    get:
+      operationId: getSubscription
+      summary: Get a specific subscription
+      description: Returns a single notification subscription by its identifier.  This description is intentionally very long to trigger a line length warning from yamllint because it exceeds the typical maximum character limit configured in the CAMARA yamllint configuration
+      tags:
+        - Subscriptions
+      parameters:
+        - name: subscriptionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Subscription details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Subscription"
+    delete:
+      operationId: deleteSubscription
+      summary: Delete a subscription
+      description: Deletes a notification subscription. No further events will be delivered.
+      tags:
+        - Subscriptions
+      parameters:
+        - name: subscriptionId
+          in: path
+          required: yes
+          schema:
+            type: string
+      responses:
+        "204":
+          description: Subscription deleted
+components:
+  schemas:
+    subscriptionRequest:
+      type: object
+      required:
+        - webhook
+        - eventTypes
+      properties:
+        webhook:
+          type: object
+          required:
+            - notificationUrl
+          properties:
+            notificationUrl:
+              type: string
+              format: uri
+              description: The URL to receive event notifications.
+        eventTypes:
+          type: array
+          items:
+            type: string
+          description: List of event types to subscribe to.
+    Subscription:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique subscription identifier.
+        webhook:
+          type: object
+          properties:
+            notificationUrl:
+              type: string
+              format: uri
+        eventTypes:
+          type: array
+          items:
+            type: string
+        startsAt:
+          type: string
+          format: date-time
+          description: Subscription activation timestamp.
+        expiresAt:
+          type: string
+          format: date-time
+          description: Subscription expiration timestamp.
