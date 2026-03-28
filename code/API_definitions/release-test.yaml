@@ -21,7 +21,7 @@ servers:
 tags:
   - name: Status
     description: Service status operations
-paths:
+paths:   
   /status:
     get:
       operationId: getStatus
@@ -29,6 +29,11 @@ paths:
       description: Returns the current status of the release test service.
       tags:
         - Status
+      parameters:
+        - name: verbose
+          in: query
+          schema:
+            type: boolean
       responses:
         "200":
           description: Service is running
@@ -41,3 +46,27 @@ paths:
                     type: string
                     enum:
                       - available
+  /status/{id}:
+    get:
+      operationId: getStatusById
+      summary: Get status for a specific component
+      tags:
+        - Status
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Component status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  componentName:
+                    type: string
+                  status:
+                    type: string
