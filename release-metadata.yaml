@@ -1,0 +1,16 @@
+repository:
+  repository_name: ReleaseTest
+  release_tag: r1.4
+  release_type: pre-release-rc
+  release_date: null
+  src_commit_sha: f2a67c4fb99d644cc7c7a2812d0c1289fde20232
+apis:
+- api_name: release-test
+  api_version: 1.0.0-rc.3
+  api_title: Release Test
+- api_name: sample-service
+  api_version: 0.1.0-alpha.1
+  api_title: Sample CAMARA Service API
+dependencies:
+  commonalities_release: r4.1 (0.7.0-rc.1)
+  identity_consent_management_release: r4.1 (0.5.0-rc.1)
