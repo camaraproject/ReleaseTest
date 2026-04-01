@@ -19,6 +19,7 @@ Test repository for end-to-end validation of the automated release workflow. Con
 * Generate CHANGELOG and README updates
 * Publish release with branch protection enforced
 * Post-release sync PR back to main
+* Validation framework v1 integration testing
 
 <!-- CAMARA:RELEASE-INFO:START -->
 <!-- The following section is automatically maintained by the CAMARA project-administration tooling: https://github.com/camaraproject/project-administration -->
