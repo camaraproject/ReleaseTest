@@ -1,0 +1,19 @@
+repository:
+  repository_name: ReleaseTest
+  release_tag: r1.4
+  release_type: pre-release-rc
+  release_date: null
+  src_commit_sha: 4c6bbafaf19e3c03b0e43db4ab12f2d9ab1ff110
+apis:
+- api_name: release-test
+  api_version: 1.0.0-rc.3
+  api_title: Release Test
+- api_name: sample-service
+  api_version: 0.1.0-rc.1
+  api_title: Sample Service
+- api_name: sample-service-subscriptions
+  api_version: 0.1.0-rc.1
+  api_title: Sample Service Subscription Template
+dependencies:
+  commonalities_release: r4.1 (0.7.0-rc.1)
+  identity_consent_management_release: r4.1 (0.5.0-rc.1)
