@@ -287,15 +287,6 @@ components:
           example: "https://endpoint.example.com/sink"
         sinkCredential:
           $ref: "../common/CAMARA_event_common.yaml#/components/schemas/SinkCredential"
-        # APIs that need per-event-type filtering may add a `types` array here,
-        # e.g.:
-        #   types:
-        #     type: array
-        #     minItems: 1
-        #     items:
-        #       $ref: "#/components/schemas/ApiEventType"
-        # The default implicit-subscription convention delivers all API event
-        # types to the supplied sink.
 
     Resource:
       description: A resource managed by the API
