@@ -84,19 +84,25 @@ The API definition(s) are based on
 
 ### Added
 
-* _To be filled during release review_
+* Initial API definition based on the Commonalities `sample-service.yaml` template (work in progress between r4.1 and r4.2, tracked in [Commonalities#606](https://github.com/camaraproject/Commonalities/pull/606))
+* Resource management endpoints under `/resources`:
+  * `createResource` — `POST /resources`
+  * `listResources` — `GET /resources`
+  * `getResource` — `GET /resources/{resourceId}`
+  * `deleteResource` — `DELETE /resources/{resourceId}`
+* CAMARA-aligned error model and security scheme (`openId` with standard scopes)
 
 ### Changed
 
-* _To be filled during release review_
+* None — first release
 
 ### Fixed
 
-* _To be filled during release review_
+* None — first release
 
 ### Removed
 
-* _To be filled during release review_
+* None — first release
 
 ## sample-service-subscriptions 0.1.0-alpha.1
 
@@ -109,19 +115,25 @@ The API definition(s) are based on
 
 ### Added
 
-* _To be filled during release review_
+* Initial API definition based on the Commonalities `sample-service-subscriptions.yaml` (explicit subscription) template (work in progress between r4.1 and r4.2, tracked in [Commonalities#606](https://github.com/camaraproject/Commonalities/pull/606))
+* Event subscription management endpoints under `/subscriptions`:
+  * `createSampleServiceSubscription` — `POST /subscriptions`
+  * `retrieveSampleServiceSubscriptionList` — `GET /subscriptions`
+  * `retrieveSampleServiceSubscription` — `GET /subscriptions/{subscriptionId}`
+  * `deleteSampleServiceSubscription` — `DELETE /subscriptions/{subscriptionId}`
+* CloudEvents-based event delivery using the shared `CAMARA_event_common.yaml` schema
 
 ### Changed
 
-* _To be filled during release review_
+* None — first release
 
 ### Fixed
 
-* _To be filled during release review_
+* None — first release
 
 ### Removed
 
-* _To be filled during release review_
+* None — first release
 
 ## sample-implicit-events 0.1.0-alpha.1
 
@@ -134,19 +146,25 @@ The API definition(s) are based on
 
 ### Added
 
-* _To be filled during release review_
+* Initial API definition based on the Commonalities `sample-implicit-events.yaml` (implicit subscription) template (work in progress between r4.1 and r4.2, drafted in [Commonalities#612](https://github.com/camaraproject/Commonalities/pull/612) as a follow-up to #606 / [Commonalities#608](https://github.com/camaraproject/Commonalities/issues/608))
+* Resource management endpoints under `/resources` with implicit event delivery (no explicit subscription management):
+  * `createResource` — `POST /resources`
+  * `listResources` — `GET /resources`
+  * `getResource` — `GET /resources/{resourceId}`
+  * `deleteResource` — `DELETE /resources/{resourceId}`
+* CloudEvents-based notifications driven by resource lifecycle, using the shared `CAMARA_event_common.yaml` schema
 
 ### Changed
 
-* _To be filled during release review_
+* None — first release
 
 ### Fixed
 
-* _To be filled during release review_
+* None — first release
 
 ### Removed
 
-* _To be filled during release review_
+* None — first release
 
 **Full Changelog**: https://github.com/camaraproject/ReleaseTest/commits/r1.1
 
