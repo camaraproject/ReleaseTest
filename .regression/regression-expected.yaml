@@ -1,0 +1,46 @@
+schema_version: 1
+branch: regression/r4.1-main-baseline
+description: baseline - ReleaseTest main, unmodified
+captured_at: '2026-04-13T21:40:36Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/24368275621
+tooling_ref: b4c1c3e9b3f958b3df4d330ae61af19ab6eff22b
+summary:
+  errors: 0
+  warnings: 0
+  hints: 27
+match_mode: exact
+findings:
+- rule_id: P-006
+  path: code/Test_definitions
+  level: hint
+  count: 2
+- rule_id: S-211
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-211
+  path: code/API_definitions/sample-service-subscriptions.yaml
+  level: hint
+  count: 7
+- rule_id: S-313
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-313
+  path: code/API_definitions/sample-service.yaml
+  level: hint
+  count: 2
+- rule_id: S-313
+  path: code/common/CAMARA_common.yaml
+  level: hint
+  count: 3
+- rule_id: S-313
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
+  count: 7
+- rule_id: S-314
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
+- rule_id: S-316
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
