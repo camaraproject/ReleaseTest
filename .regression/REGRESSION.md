@@ -17,18 +17,30 @@ produces on that snapshot, so that:
 No specs on this branch are intentionally broken. All samples are the
 unmodified `main` content.
 
-## Pinned tooling ref
+## Tooling ref this branch tracks
 
-The Validation Framework caller workflow hardcodes
-`uses: camaraproject/tooling/.github/workflows/validation.yml@v1-rc` and does
-not forward `workflow_dispatch` inputs, so OIDC inside the reusable locks to
-whatever commit `v1-rc` currently points at. Local dispatchers cannot
-override this.
+ReleaseTest's caller workflow hardcodes
+`uses: camaraproject/tooling/.github/workflows/validation.yml@validation-framework`
+— that is, the **HEAD of the `validation-framework` branch**, not the
+`v1-rc` tag. This is intentional: ReleaseTest is the canary repo for the
+validation framework. Every push to `validation-framework` is exercised
+against this regression branch *before* `v1-rc` is moved for the rest of
+the org.
 
-At last capture (see `captured_at` in `regression-expected.yaml`), `v1-rc`
-resolved to commit SHA recorded under the `tooling_ref` field. If `v1-rc`
-moves, this branch must be recaptured — run the regression runner in
-capture mode and commit the updated fixture.
+The `tooling_ref` field in `regression-expected.yaml` records the SHA that
+the validation orchestrator actually resolved at capture time — read from
+`context.json` in the diagnostics artifact. It will match the
+`validation-framework` HEAD that GitHub resolved when the dispatched run
+started, which may or may not coincide with `v1-rc`.
+
+If `validation-framework` HEAD advances and starts producing different
+findings against the same specs:
+
+- **Intended change** (new rule, severity adjustment, etc.) → recapture
+  the fixture: run the regression runner in `--capture` mode, review the
+  new finding set, commit the updated `regression-expected.yaml`.
+- **Unintended regression** → fix the code on `validation-framework`
+  before merging, then re-run.
 
 ## How to run
 
