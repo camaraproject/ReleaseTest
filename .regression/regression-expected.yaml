@@ -1,0 +1,73 @@
+schema_version: 1
+branch: regression/r4.1-broken-spec-api-metadata
+description: 'broken-spec: info/license/servers/tags/403/trailing-slash edits on sample-service.yaml'
+captured_at: '2026-04-15T05:46:24Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/24438558760
+tooling_ref: 2ca8b0304499f64bab15d3b66c877048159168b8
+summary:
+  errors: 2
+  warnings: 4
+  hints: 30
+match_mode: exact
+findings:
+- rule_id: P-006
+  path: code/Test_definitions
+  level: hint
+  count: 2
+- rule_id: S-018
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: S-019
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: S-020
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-021
+  path: code/API_definitions/sample-service.yaml
+  level: hint
+- rule_id: S-022
+  path: code/API_definitions/sample-service.yaml
+  level: hint
+- rule_id: S-023
+  path: code/API_definitions/sample-service.yaml
+  level: hint
+- rule_id: S-024
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-201
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-210
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-211
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-211
+  path: code/API_definitions/sample-service-subscriptions.yaml
+  level: hint
+  count: 7
+- rule_id: S-313
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-313
+  path: code/API_definitions/sample-service.yaml
+  level: hint
+  count: 2
+- rule_id: S-313
+  path: code/common/CAMARA_common.yaml
+  level: hint
+  count: 3
+- rule_id: S-313
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
+  count: 7
+- rule_id: S-314
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
+- rule_id: S-316
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
