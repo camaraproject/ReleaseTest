@@ -1,34 +1,24 @@
 openapi: 3.0.3
 info:
   title: Sample Service
-  description: |
-    Template for a request-response CAMARA API.
-
-    Copy this file to your API repository's `code/API_definitions/` directory
-    and adapt it to your API's resources and operations.
-
-    This template demonstrates:
-    - `$ref` to `../common/CAMARA_common.yaml` for shared schemas, error responses,
-      parameters, headers, and security schemes
-    - Two options for error responses:
-      - Option A: Pure `$ref` for responses using only generic error codes
-      - Option B: Local response definition extending generic errors with API-specific codes
+  contact:
+    name: CAMARA
   license:
-    name: Apache 2.0
-    url: https://www.apache.org/licenses/LICENSE-2.0.html
+    name: MIT
+    url: https://opensource.org/licenses/MIT
   version: wip
   x-camara-commonalities: 0.7.0
 externalDocs:
   description: Product documentation at CAMARA
   url: https://github.com/camaraproject/ReleaseTest
 servers:
-  - url: "{apiRoot}/sample-service/vwip"
+  - url: "{apiRoot}/sample-service/vwip/"
     variables:
       apiRoot:
-        default: http://localhost:9091
-        description: API root, defined by the service provider, e.g. `api.example.com` or `api.example.com/somepath`
+        default: https://api.example.com
+        description: API root URL for the service
 tags:
-  - name: Resources
+  - name: resources
     description: Operations on sample resources
 security:
   - openId:
@@ -38,7 +28,7 @@ paths:
   /resources:
     post:
       tags:
-        - Resources
+        - resources
       summary: Create a resource
       description: Creates a new resource with the provided properties.
       operationId: createResource
@@ -64,8 +54,6 @@ paths:
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic400"
         "401":
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic401"
-        "403":
-          $ref: "../common/CAMARA_common.yaml#/components/responses/Generic403"
         "409":
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic409"
         "422":
@@ -76,7 +64,7 @@ paths:
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic500"
     get:
       tags:
-        - Resources
+        - resources
       summary: List resources
       description: Returns a list of all resources accessible to the API consumer.
       operationId: listResources
@@ -107,7 +95,7 @@ paths:
   /resources/{resourceId}:
     get:
       tags:
-        - Resources
+        - resources
       summary: Get a resource by ID
       description: Returns the details of a specific resource identified by its ID.
       operationId: getResource
@@ -137,7 +125,7 @@ paths:
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic500"
     delete:
       tags:
-        - Resources
+        - resources
       summary: Delete a resource
       description: Deletes a specific resource identified by its ID.
       operationId: deleteResource
