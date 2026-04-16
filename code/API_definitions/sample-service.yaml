@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.0.4
 info:
-  title: Sample Service
+  title : Sample Service
   description: |
     Template for a request-response CAMARA API.
 
@@ -16,11 +16,14 @@ info:
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  version: wip
+  version: wip #regression
   x-camara-commonalities: 0.7.0
+  x-regression-truthy: yes
 externalDocs:
   description: Product documentation at CAMARA
   url: https://github.com/camaraproject/ReleaseTest
+x-regression-brackets: [ "a", "b" ]
+x-regression-commas: ["a","b","c"]
 servers:
   - url: "{apiRoot}/sample-service/vwip"
     variables:
@@ -52,7 +55,7 @@ paths:
               $ref: "#/components/schemas/CreateResource"
       responses:
         "201":
-          description: Resource created
+          description: Resource created   
           headers:
             x-correlator:
               $ref: "../common/CAMARA_common.yaml#/components/headers/x-correlator"
@@ -215,11 +218,12 @@ components:
       format: uuid
       maxLength: 36
       description: Unique identifier for the resource
+  # wrong indentation
     CreateResource:
       description: Properties for creating a new resource
       type: object
       required:
-        - name
+        -  name
       properties:
         name:
           type: string
@@ -227,12 +231,16 @@ components:
           description: Human-readable name for the resource
         device:
           $ref: "../common/CAMARA_common.yaml#/components/schemas/Device"
+      description: duplicate description
+
+
+
     Resource:
       description: A resource managed by the API
       type: object
       required:
-        - resourceId
-        - name
+          - resourceId
+          - name
       properties:
         resourceId:
           $ref: "#/components/schemas/ResourceId"
@@ -242,3 +250,6 @@ components:
           description: Human-readable name for the resource
         device:
           $ref: "../common/CAMARA_common.yaml#/components/schemas/Device"
+      x-regression-braces: { key: "value" }
+    InvalidTypeSchema:
+      description: Schema without type for regression testing
