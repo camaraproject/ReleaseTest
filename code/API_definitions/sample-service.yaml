@@ -60,16 +60,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Resource"
-        "400":
-          $ref: "../common/CAMARA_common.yaml#/components/responses/Generic400"
         "401":
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic401"
         "403":
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic403"
         "409":
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic409"
-        "422":
-          $ref: "../common/CAMARA_common.yaml#/components/responses/Generic422"
         "429":
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic429"
         "500":
@@ -98,8 +94,6 @@ paths:
                   $ref: "#/components/schemas/Resource"
         "400":
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic400"
-        "401":
-          $ref: "../common/CAMARA_common.yaml#/components/responses/Generic401"
         "403":
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic403"
         "500":
@@ -145,11 +139,6 @@ paths:
         - $ref: "#/components/parameters/ResourceId"
         - $ref: "../common/CAMARA_common.yaml#/components/parameters/x-correlator"
       responses:
-        "204":
-          description: Resource deleted
-          headers:
-            x-correlator:
-              $ref: "../common/CAMARA_common.yaml#/components/headers/x-correlator"
         "400":
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic400"
         "401":
@@ -186,20 +175,21 @@ components:
                       - 404
                   code:
                     enum:
-                      - NOT_FOUND
-                      - IDENTIFIER_NOT_FOUND
+                      - "404"
+                      - identifier_not_found
+                      - "SAMPLE_SERVICE.not-found"
           examples:
             GENERIC_404_NOT_FOUND:
               description: The specified resource was not found
               value:
                 status: 404
-                code: NOT_FOUND
+                code: "404"
                 message: The specified resource is not found.
             RESOURCE_404_IDENTIFIER_NOT_FOUND:
               description: API-specific — some identifier cannot be matched to a resource
               value:
                 status: 404
-                code: IDENTIFIER_NOT_FOUND
+                code: identifier_not_found
                 message: Some of the provided identifiers are not found.
   parameters:
     ResourceId:
