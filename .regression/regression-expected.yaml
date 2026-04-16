@@ -1,0 +1,65 @@
+schema_version: 1
+branch: regression/r4.1-broken-spec-error-handling
+description: 'broken-spec: error-code/success-response/401/validation edits on sample-service.yaml'
+captured_at: '2026-04-16T10:50:57Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/24506155642
+tooling_ref: df81a2f2975cf0dac758056128ea4ff1bdf40363
+summary:
+  errors: 2
+  warnings: 6
+  hints: 27
+match_mode: exact
+findings:
+- rule_id: P-006
+  path: code/Test_definitions
+  level: hint
+  count: 2
+- rule_id: S-025
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: S-026
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+  count: 3
+- rule_id: S-027
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-211
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-211
+  path: code/API_definitions/sample-service-subscriptions.yaml
+  level: hint
+  count: 7
+- rule_id: S-221
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-307
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: S-313
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-313
+  path: code/API_definitions/sample-service.yaml
+  level: hint
+  count: 2
+- rule_id: S-313
+  path: code/common/CAMARA_common.yaml
+  level: hint
+  count: 3
+- rule_id: S-313
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
+  count: 7
+- rule_id: S-314
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
+- rule_id: S-316
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
+- rule_id: S-318
+  path: code/API_definitions/sample-service.yaml
+  level: warn
