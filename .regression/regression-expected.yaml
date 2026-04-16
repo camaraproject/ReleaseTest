@@ -1,0 +1,101 @@
+schema_version: 1
+branch: regression/r4.1-broken-spec-yaml-fundamentals
+description: 'broken-spec: yamllint Y-001..Y-013 + Spectral S-005/S-016 on sample-service.yaml'
+captured_at: '2026-04-16T08:27:23Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/24500107032
+tooling_ref: 25edb622909a641de553584ccda77d2ba53b6600
+summary:
+  errors: 19
+  warnings: 0
+  hints: 28
+match_mode: exact
+findings:
+- rule_id: P-006
+  path: code/Test_definitions
+  level: hint
+  count: 2
+- rule_id: S-005
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: S-016
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: S-211
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-211
+  path: code/API_definitions/sample-service-subscriptions.yaml
+  level: hint
+  count: 7
+- rule_id: S-211
+  path: code/API_definitions/sample-service.yaml
+  level: hint
+- rule_id: S-313
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-313
+  path: code/API_definitions/sample-service.yaml
+  level: hint
+  count: 2
+- rule_id: S-313
+  path: code/common/CAMARA_common.yaml
+  level: hint
+  count: 3
+- rule_id: S-313
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
+  count: 7
+- rule_id: S-314
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
+- rule_id: S-316
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
+- rule_id: Y-001
+  path: code/API_definitions/sample-service.yaml
+  level: error
+  count: 2
+- rule_id: Y-002
+  path: code/API_definitions/sample-service.yaml
+  level: error
+  count: 2
+- rule_id: Y-003
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: Y-004
+  path: code/API_definitions/sample-service.yaml
+  level: error
+  count: 2
+- rule_id: Y-005
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: Y-006
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: Y-007
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: Y-008
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: Y-009
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: Y-010
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: Y-011
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: Y-012
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: Y-013
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- engine: spectral
+  engine_rule: parser
+  path: code/API_definitions/sample-service.yaml
+  level: error
