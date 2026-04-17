@@ -1,13 +1,13 @@
 schema_version: 1
 branch: regression/r4.1-broken-spec-api-metadata
-description: 'broken-spec: info/license/servers/tags/403/trailing-slash edits on sample-service.yaml'
-captured_at: '2026-04-15T05:46:24Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/24438558760
-tooling_ref: 2ca8b0304499f64bab15d3b66c877048159168b8
+description: recapture after tooling#176 (S-313 suppress_schema_paths)
+captured_at: '2026-04-17T10:43:40Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/24561060485
+tooling_ref: cb7d05e907ea897cee2ab4163e14954da2888c1a
 summary:
   errors: 2
   warnings: 4
-  hints: 30
+  hints: 20
 match_mode: exact
 findings:
 - rule_id: P-006
@@ -57,14 +57,6 @@ findings:
   path: code/API_definitions/sample-service.yaml
   level: hint
   count: 2
-- rule_id: S-313
-  path: code/common/CAMARA_common.yaml
-  level: hint
-  count: 3
-- rule_id: S-313
-  path: code/common/CAMARA_event_common.yaml
-  level: hint
-  count: 7
 - rule_id: S-314
   path: code/common/CAMARA_event_common.yaml
   level: hint
