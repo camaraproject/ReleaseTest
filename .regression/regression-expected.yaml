@@ -1,13 +1,13 @@
 schema_version: 1
 branch: regression/r4.1-broken-spec-yaml-fundamentals
-description: 'broken-spec: yamllint Y-001..Y-013 + Spectral S-005/S-016 on sample-service.yaml'
-captured_at: '2026-04-16T08:27:23Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/24500107032
-tooling_ref: 25edb622909a641de553584ccda77d2ba53b6600
+description: recapture after tooling#176 (S-313 suppress_schema_paths)
+captured_at: '2026-04-17T10:45:37Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/24561132554
+tooling_ref: cb7d05e907ea897cee2ab4163e14954da2888c1a
 summary:
   errors: 19
   warnings: 0
-  hints: 28
+  hints: 18
 match_mode: exact
 findings:
 - rule_id: P-006
@@ -39,14 +39,6 @@ findings:
   path: code/API_definitions/sample-service.yaml
   level: hint
   count: 2
-- rule_id: S-313
-  path: code/common/CAMARA_common.yaml
-  level: hint
-  count: 3
-- rule_id: S-313
-  path: code/common/CAMARA_event_common.yaml
-  level: hint
-  count: 7
 - rule_id: S-314
   path: code/common/CAMARA_event_common.yaml
   level: hint
