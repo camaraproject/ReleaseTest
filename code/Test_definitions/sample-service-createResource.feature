@@ -1,4 +1,4 @@
-Feature: CAMARA Sample Service API, vwip - Operation: createResource
+Feature: CAMARA Sample Service API, v1.0.0 - Operation: createResource
 
   # Input to be provided by the implementation to the tests
   # References to OAS spec schemas refer to schemas specified in /code/API_definitions/sample-service.yaml
@@ -9,27 +9,28 @@ Feature: CAMARA Sample Service API, vwip - Operation: createResource
   # * A valid access token with scope sample-service:resource:write
 
   Background: Common Sample Service createResource setup
-    Given an environment at "apiRoot"
-    And the resource "/sample-service/vwip/resources"
+    Given an environment at "apiRoot"   
+    Given the resource "/sample-service/vwip/resources"
     And the header "Authorization" is set to a valid access token
     And the header "Content-Type" is set to "application/json"
 
   # Success scenarios
 
-  @SampleService_createResource_201.01_success
+  @SampleService_createResource_201.01_success @wip
   Scenario: Create resource successfully
     Given the request body is set to a valid CreateResource request
-    When the HTTPS "POST" request is sent
+   When the HTTPS "POST" request is sent
     Then the response status code is 201
     And the response header "Content-Type" is "application/json"
     And the response header "x-correlator" has same value as the request header "x-correlator"
     And the response property "$.resourceId" exists
     And the response property "$.name" exists
 
+
+
   # Error scenarios
 
-  @SampleService_createResource_400.01_invalid_request
-  Scenario: Error response for invalid request body
+  Scenario:
     Given the request body is set to an invalid CreateResource request
     When the HTTPS "POST" request is sent
     Then the response status code is 400
