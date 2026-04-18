@@ -3,7 +3,7 @@
 Broken-spec regression fixture for the CAMARA Validation Framework r4.1
 ruleset. This branch exercises the Python engine (P-*) and gherkin engine
 (G-*) -- engines that are otherwise unpinned by regression -- via surgical
-edits to `release-plan.yaml`, two API specs, and one `.feature` file.
+edits to `release-plan.yaml`, one API spec, and one `.feature` file.
 
 ## Purpose
 
@@ -18,7 +18,7 @@ two branches are independent regression pins.
 
 ## What is broken on this branch
 
-Edits span four files.
+Edits span three files.
 
 ### `release-plan.yaml` (1 edit)
 
@@ -41,6 +41,12 @@ P-014, P-016, ...) bail early when the spec is missing, so no unintended
 fallout. Spectral and yamllint are glob-driven and ignore nonexistent
 files.
 
+`release-plan.yaml` also pins `commonalities_release: r4.1` and
+`identity_consent_management_release: r4.1` (aligned with the sibling
+regression branches) so that the P-021 cache-sync check stays gated off
+on this branch -- the r99.99 test state on `main` is orthogonal to what
+this fixture is intended to pin.
+
 ### `code/API_definitions/sample-service.yaml` (1 edit)
 
 | # | Edit | Rule expected to fire |
@@ -52,41 +58,35 @@ the expected `vwip` (derived from `info.version: wip`), and the api-name
 segment `Sample-Service` does not match the release-plan `api_name`
 `sample-service` (case-sensitive comparison).
 
-`info.version` is deliberately left at `wip` here so
-`build_version_segment()` returns `vwip` and `check-server-url-version`
-actually runs -- it bails early on unparseable versions.
-
-### `code/API_definitions/sample-service-subscriptions.yaml` (1 edit)
+### `code/Test_definitions/sample-service-createResource.feature` (7 edits)
 
 | # | Edit | Rule expected to fire |
 |---|---|---|
-| 3 | `info.version` changed from `wip` to `draft` | `P-003` / `check-info-version-format` (error) |
+| 3 | Add `@wip` to the first scenario's tag line | `G-016` / `no-restricted-tags` (warn) |
+| 4 | Change a Background `And` step to `Given` (consecutive `Given` keywords) | `G-025` / `use-and` (warn) |
+| 5 | Indent one step with 3 spaces instead of 4 | `G-002` / `indentation` (warn) |
+| 6 | Add 2+ blank lines between scenarios | `G-014` / `no-multiple-empty-lines` (warn) |
+| 7 | Remove the tag line from the second scenario | `G-024` / `required-tags` (warn) |
+| 8 | Blank out the second scenario's name (`Scenario:`) | `G-021` / `no-unnamed-scenarios` (warn) |
+| 9 | Add trailing whitespace on one step line | `G-019` / `no-trailing-spaces` (warn) |
 
-Kept on a separate API from edit 2 so the `build_version_segment → None`
-short-circuit on unparseable `info.version` does not mask `P-004` over
-there.
-
-### `code/Test_definitions/sample-service-createResource.feature` (8 edits)
-
-| # | Edit | Rule expected to fire |
-|---|---|---|
-| 4 | Feature line version `vwip` → `v1.0.0` | `P-007` / `check-test-file-version` (hint) |
-| 5 | Add `@wip` to the first scenario's tag line | `G-016` / `no-restricted-tags` (warn) |
-| 6 | Change a Background `And` step to `Given` (consecutive `Given` keywords) | `G-025` / `use-and` (warn) |
-| 7 | Indent one step with 3 spaces instead of 4 | `G-002` / `indentation` (warn) |
-| 8 | Add 2+ blank lines between scenarios | `G-014` / `no-multiple-empty-lines` (warn) |
-| 9 | Remove the tag line from the second scenario | `G-024` / `required-tags` (warn) |
-| 10 | Blank out the second scenario's name (`Scenario:`) | `G-021` / `no-unnamed-scenarios` (warn) |
-| 11 | Add trailing whitespace on one step line | `G-019` / `no-trailing-spaces` (warn) |
-
-Edits 9 and 10 both touch the second scenario -- one removes its tag, the
+Edits 7 and 8 both touch the second scenario -- one removes its tag, the
 other blanks its name. They fire independently.
 
-This branch tests the 13 rules listed above (P-001, P-002, P-003, P-004,
-P-005, P-007, G-002, G-014, G-016, G-019, G-021, G-024, G-025), no more.
+This branch tests the 11 rules listed above (P-001, P-002, P-004, P-005,
+G-002, G-014, G-016, G-019, G-021, G-024, G-025), no more.
 
 ## Deliberately out of scope
 
+- **P-003** `check-info-version-format` and **P-007**
+  `check-test-file-version` -- both skip on feature branches by design
+  (see [`validation/context/context_builder.py`](https://github.com/camaraproject/tooling/blob/validation-framework/validation/context/context_builder.py)
+  `derive_branch_type`: only `main`, `release-snapshot/*`, `maintenance/*`
+  produce a non-feature branch type). `regression/...` branches are always
+  classified as feature, so neither check fires on a regression run. These
+  two rules are not pinnable via the broken-spec branch model and need a
+  different coverage mechanism (unit-test-level fixtures or a
+  dedicated `main` / snapshot-context regression path).
 - **P-006** `check-test-files-exist` -- already pinned by
   `regression/r4.1-main-baseline`. Pinning it again on this branch would
   double-count. The +1 count delta from the synthetic API is captured in
@@ -106,9 +106,9 @@ and documented in
 [`validation/docs/regression-testing.md`](https://github.com/camaraproject/tooling/blob/validation-framework/validation/docs/regression-testing.md).
 
 This branch's theme is **Python + gherkin engines** -- filename /
-api-name / version / server URL checks plus gherkin quality rules. The
-targeted rules are stable across Commonalities minor bumps, so this
-branch is a LOW-risk rebase candidate.
+api-name / server URL checks plus gherkin quality rules. The targeted
+rules are stable across Commonalities minor bumps, so this branch is a
+LOW-risk rebase candidate.
 
 ## Lifecycle across Commonalities versions
 
@@ -149,7 +149,7 @@ python3 validation/scripts/regression_runner.py \
     --repo camaraproject/ReleaseTest \
     --capture regression/r4.1-broken-spec-test-files \
     --out /tmp/expected.yaml \
-    --capture-description "broken-spec: P-001..P-005, P-007 + gherkin rules"
+    --capture-description "broken-spec: P-001/002/004/005 + selected gherkin rules"
 ```
 
 Review `/tmp/expected.yaml`, commit it to
