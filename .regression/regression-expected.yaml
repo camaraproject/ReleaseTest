@@ -1,0 +1,72 @@
+schema_version: 1
+branch: regression/r4.1-broken-spec-test-files
+description: 'broken-spec: P-001/002/004/005 + gherkin G-002/014/016/019/021/024/025'
+captured_at: '2026-04-18T17:41:39Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/24610229061
+tooling_ref: 699d0bbfe69467e680166bc83891b9dd3b756117
+summary:
+  errors: 4
+  warnings: 8
+  hints: 18
+match_mode: exact
+findings:
+- rule_id: G-002
+  path: code/Test_definitions/sample-service-createResource.feature
+  level: warn
+- rule_id: G-014
+  path: code/Test_definitions/sample-service-createResource.feature
+  level: warn
+  count: 2
+- rule_id: G-016
+  path: code/Test_definitions/sample-service-createResource.feature
+  level: warn
+- rule_id: G-019
+  path: code/Test_definitions/sample-service-createResource.feature
+  level: warn
+- rule_id: G-021
+  path: code/Test_definitions/sample-service-createResource.feature
+  level: warn
+- rule_id: G-024
+  path: code/Test_definitions/sample-service-createResource.feature
+  level: warn
+- rule_id: G-025
+  path: code/Test_definitions/sample-service-createResource.feature
+  level: warn
+- rule_id: P-001
+  path: code/API_definitions/Bad_Name_Api.yaml
+  level: error
+- rule_id: P-002
+  path: code/API_definitions/Bad_Name_Api.yaml
+  level: error
+- rule_id: P-004
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: P-005
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: P-006
+  path: code/Test_definitions
+  level: hint
+  count: 3
+- rule_id: S-211
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-211
+  path: code/API_definitions/sample-service-subscriptions.yaml
+  level: hint
+  count: 7
+- rule_id: S-313
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-313
+  path: code/API_definitions/sample-service.yaml
+  level: hint
+  count: 2
+- rule_id: S-314
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
+- rule_id: S-316
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
