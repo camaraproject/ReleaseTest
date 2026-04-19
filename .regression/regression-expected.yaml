@@ -1,0 +1,65 @@
+schema_version: 1
+branch: regression/r4.1-broken-spec-schema-constraints
+description: 'broken-spec: schema constraints, OWASP limits, operation security'
+captured_at: '2026-04-19T07:09:57Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/24623490980
+tooling_ref: 4b0842d5398277744af38cba96290c287a1cf847
+summary:
+  errors: 3
+  warnings: 8
+  hints: 18
+match_mode: exact
+findings:
+- rule_id: P-006
+  path: code/Test_definitions
+  level: hint
+  count: 2
+- rule_id: S-030
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-211
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-211
+  path: code/API_definitions/sample-service-subscriptions.yaml
+  level: hint
+  count: 7
+- rule_id: S-300
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: S-303
+  path: code/API_definitions/sample-service.yaml
+  level: error
+  count: 2
+- rule_id: S-308
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+  count: 2
+- rule_id: S-309
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-310
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-311
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+  count: 2
+- rule_id: S-312
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-313
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-313
+  path: code/API_definitions/sample-service.yaml
+  level: hint
+  count: 3
+- rule_id: S-314
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
+- rule_id: S-316
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
