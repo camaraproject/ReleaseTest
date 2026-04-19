@@ -39,8 +39,6 @@ paths:
     post:
       tags:
         - Resources
-      summary: Create a resource
-      description: Creates a new resource with the provided properties.
       operationId: createResource
       parameters:
         - $ref: "../common/CAMARA_common.yaml#/components/parameters/x-correlator"
@@ -52,7 +50,7 @@ paths:
               $ref: "#/components/schemas/CreateResource"
       responses:
         "201":
-          description: Resource created
+          description: ""
           headers:
             x-correlator:
               $ref: "../common/CAMARA_common.yaml#/components/headers/x-correlator"
@@ -78,7 +76,6 @@ paths:
       tags:
         - Resources
       summary: List resources
-      description: Returns a list of all resources accessible to the API consumer.
       operationId: listResources
       parameters:
         - $ref: "../common/CAMARA_common.yaml#/components/parameters/x-correlator"
@@ -106,8 +103,6 @@ paths:
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic500"
   /resources/{resourceId}:
     get:
-      tags:
-        - Resources
       summary: Get a resource by ID
       description: Returns the details of a specific resource identified by its ID.
       operationId: getResource
@@ -140,7 +135,6 @@ paths:
         - Resources
       summary: Delete a resource
       description: Deletes a specific resource identified by its ID.
-      operationId: deleteResource
       parameters:
         - $ref: "#/components/parameters/ResourceId"
         - $ref: "../common/CAMARA_common.yaml#/components/parameters/x-correlator"
@@ -206,7 +200,6 @@ components:
       name: resourceId
       in: path
       required: true
-      description: Identifier of the resource to operate on
       schema:
         $ref: "#/components/schemas/ResourceId"
   schemas:
@@ -239,6 +232,21 @@ components:
         name:
           type: string
           maxLength: 128
-          description: Human-readable name for the resource
+        createdAt:
+          type: string
+          format: date-time
+          maxLength: 40
+          description: Creation time.
+        validFor:
+          type: string
+          format: duration
+          maxLength: 40
+          description: Validity window.
+        labels:
+          type: array
+          maxItems: 10
+          items:
+            type: string
+            maxLength: 32
         device:
           $ref: "../common/CAMARA_common.yaml#/components/schemas/Device"
