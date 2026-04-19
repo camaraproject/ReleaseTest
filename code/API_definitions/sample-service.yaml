@@ -30,10 +30,6 @@ servers:
 tags:
   - name: Resources
     description: Operations on sample resources
-security:
-  - openId:
-      - sample-service:resource:read
-      - sample-service:resource:write
 paths:
   /resources:
     post:
@@ -93,7 +89,6 @@ paths:
               schema:
                 type: array
                 minItems: 0
-                maxItems: 1000
                 items:
                   $ref: "#/components/schemas/Resource"
         "400":
@@ -104,7 +99,7 @@ paths:
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic403"
         "500":
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic500"
-  /resources/{resourceId}:
+  /resources/{msisdn}:
     get:
       tags:
         - Resources
@@ -203,7 +198,7 @@ components:
                 message: Some of the provided identifiers are not found.
   parameters:
     ResourceId:
-      name: resourceId
+      name: msisdn
       in: path
       required: true
       description: Identifier of the resource to operate on
@@ -211,20 +206,32 @@ components:
         $ref: "#/components/schemas/ResourceId"
   schemas:
     ResourceId:
-      type: string
-      format: uuid
-      maxLength: 36
+      type: integer
+      format: int64
+      minimum: 1
+      maximum: 999999
       description: Unique identifier for the resource
     CreateResource:
       description: Properties for creating a new resource
       type: object
       required:
         - name
+        - email
       properties:
         name:
           type: string
           maxLength: 128
           description: Human-readable name for the resource
+        quota:
+          type: integer
+          description: Resource quota.
+        priority:
+          type: integer
+          format: int32
+          description: Resource priority.
+        label:
+          type: string
+          description: Free-form label.
         device:
           $ref: "../common/CAMARA_common.yaml#/components/schemas/Device"
     Resource:
@@ -232,11 +239,11 @@ components:
       type: object
       required:
         - resourceId
-        - name
+        - type
       properties:
         resourceId:
           $ref: "#/components/schemas/ResourceId"
-        name:
+        type:
           type: string
           maxLength: 128
           description: Human-readable name for the resource
