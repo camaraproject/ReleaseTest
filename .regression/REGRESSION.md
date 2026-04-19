@@ -34,29 +34,37 @@ and collisions are avoided by design.
 | 6 | A `requestBody:` block (`required: false`, JSON object schema) added to GET `/resources/{id}`. | `S-002` / `camara-get-no-request-body` (error) |
 | 7 | DELETE `/resources/{id}.tags` changed from `[Resources]` to `[NonExistent]` — a single, undefined tag. | `S-222` / `operation-tag-defined` (warn) |
 | 8 | A new `trace:` operation added to `/resources/{id}` (`operationId: traceResource`, `tags: [Resources]`, summary + description, `200` response). `trace` is not in CAMARA's allowed HTTP method set. | `S-003` / `camara-http-methods` (error) |
-| 9 | A new path `/Widgets/{widgetId}` added with a single GET operation (`operationId: getWidget`, `tags: [Resources]`, summary + description, `200` response) and **no `parameters:` block** declaring `widgetId`. The path key is PascalCase, breaking kebab-case. | `S-008` / `camara-parameter-casing-convention` (error) + `S-224` / `path-declarations-must-exist` (warn) + `S-227` / `path-params` (error) |
+| 9 | A new path `/Widgets/{widgetId}` added with a single GET operation (`operationId: getWidget`, `tags: [Resources]`, summary + description, `200` response) and **no `parameters:` block** declaring `widgetId`. The path key is PascalCase, breaking kebab-case. | `S-008` / `camara-parameter-casing-convention` (error) + `S-227` / `path-params` (error) |
 | 10 | A second entry appended to `servers:` with `url: http://insecure.example.com/sample-service`. The plain `http://` URL violates the OWASP HTTPS-only rule. | `S-306` / `owasp:api8:2023-no-server-http` (error) |
 
-This branch tests the 12 rules listed above (S-002, S-003, S-007, S-008,
-S-010, S-217, S-220, S-222, S-224, S-225, S-227, S-306).
+This branch tests the 11 rules listed above (S-002, S-003, S-007, S-008,
+S-010, S-217, S-220, S-222, S-225, S-227, S-306).
 
-### Expected cascades
+**S-008 fires twice** (count=2): once on `/resources/` (the trailing-slash
+path also fails the kebab-case regex because the pattern requires content
+between slashes) and once on `/Widgets/{widgetId}` (PascalCase first
+segment). The trailing-slash path is the primary trigger for S-225; the
+S-008 cascade is a structural side-effect.
 
-- **S-227** also fires on GET `/resources/{id}` and DELETE
-  `/resources/{id}` for the duration of the fixture if Spectral's resolver
-  evaluates the inline parameter `name` before applying the component
-  rename — the captured fixture is the source of truth either way. The
-  primary S-227 pin remains `/Widgets/{widgetId}`.
-- **S-014** / `camara-routes-description` and **S-006** /
-  `camara-operation-summary` are already pinned by branch 4 (descriptions);
-  the new `trace:` and `getWidget` operations include both fields, so no
-  additional cascades expected from those rules. If the captured fixture
-  does include them (e.g., a stricter rule resolution), document the
-  count delta as a baseline-shift cascade.
-- **S-204** / `no-$ref-siblings` and `oas3-schema` should not fire — the
-  new operations and added requestBody use minimal valid OAS structures.
+### Expected cascades (observed in captured fixture)
+
+- **S-024** / `camara-response-403` (warn) on `sample-service.yaml` — the
+  new `getWidget` operation lacks a `403` response; already pinned in
+  branch 1 (api-metadata).
+- **S-307** / `owasp:api8:2023-define-error-responses-401` (error, count=2)
+  on `sample-service.yaml` — the new `trace:` and `getWidget` operations
+  both lack a `401` response; already pinned in branch 3 (error-handling).
+- **S-318** / `owasp:api8:2023-define-error-validation` (warn, count=2)
+  on `sample-service.yaml` — the same two new operations missing 400/422
+  responses; already pinned in branch 3.
+- **P-004** (error) on `sample-service.yaml` — already-pinned baseline
+  cascade adjusted by the routing edits; recorded in fixture.
 - **S-300** / `owasp:api1:2023-no-numeric-ids` does not fire on the
   `{id}` rename: schema stays `string/uuid` (S-300 needs `type: integer`).
+- **S-204** / `no-$ref-siblings` and `oas3-schema` do not fire — the new
+  operations and added requestBody use minimal valid OAS structures.
+- **Baseline cascades unchanged**: S-211 (unused-component) on subscription
+  files, S-313 / S-314 / S-316 hints, P-006 hint on Test_definitions.
 
 ### Cascade guardrails in the edits
 
@@ -85,6 +93,13 @@ The following routing-related rules were considered but excluded:
   parameter names in lowerCamelCase, which is not currently checked. This
   branch pins the implemented behavior (path-key casing); the
   parameter-name casing gap is filed as a separate rule-side improvement.
+- **S-224** / `path-declarations-must-exist` — initially planned to
+  co-pin alongside S-227 on `/Widgets/{widgetId}`, but Spectral's
+  `path-declarations-must-exist` actually checks for empty parameter
+  names (`/path/{}`) — not for missing parameter definitions. Missing
+  declarations are S-227's territory only. Pinning S-224 would require
+  introducing an empty `{}` parameter, which also fails `oas3-schema`
+  validation; deferred.
 - **S-218** / `operation-operationId-valid-in-url` — every URL-unsafe
   character that breaks S-218 also breaks S-007 camelCase, so the two
   rules are mutually exclusive without abusing the rule. Deferred.

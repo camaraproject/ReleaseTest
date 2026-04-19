@@ -1,0 +1,86 @@
+schema_version: 1
+branch: regression/r4.1-broken-spec-routing
+description: 'broken-spec: routing, HTTP methods, paths, tags, servers'
+captured_at: '2026-04-19T09:12:09Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/24625577981
+tooling_ref: 7c4fe8dc4715532bbbb9b6a794ebb0aa3d387fbc
+summary:
+  errors: 10
+  warnings: 7
+  hints: 18
+match_mode: exact
+findings:
+- rule_id: P-004
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: P-006
+  path: code/Test_definitions
+  level: hint
+  count: 2
+- rule_id: S-002
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: S-003
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: S-007
+  path: code/API_definitions/sample-service.yaml
+  level: hint
+- rule_id: S-008
+  path: code/API_definitions/sample-service.yaml
+  level: error
+  count: 2
+- rule_id: S-010
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-024
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-211
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-211
+  path: code/API_definitions/sample-service-subscriptions.yaml
+  level: hint
+  count: 7
+- rule_id: S-217
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: S-220
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-222
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-225
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-227
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: S-306
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: S-307
+  path: code/API_definitions/sample-service.yaml
+  level: error
+  count: 2
+- rule_id: S-313
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-313
+  path: code/API_definitions/sample-service.yaml
+  level: hint
+  count: 2
+- rule_id: S-314
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
+- rule_id: S-316
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
+- rule_id: S-318
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+  count: 2
