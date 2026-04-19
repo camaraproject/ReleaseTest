@@ -3,9 +3,9 @@
 Broken-spec regression fixture for the CAMARA Validation Framework r4.1
 ruleset. This branch applies a small set of surgical edits to
 `code/API_definitions/sample-service.yaml` that are designed to trigger a
-specific group of "schema constraints" rules — reserved words, secrets in
-path parameters, required-properties integrity, OWASP array / integer /
-string limits, and OWASP operation-security restrictions.
+specific group of "schema constraints" rules — required-properties
+integrity, OWASP numeric-id avoidance, OWASP resource-consumption limits,
+and OWASP operation-security restrictions.
 
 ## Purpose
 
@@ -26,52 +26,62 @@ and collisions are avoided by design.
 
 | # | Edit | Rule expected to fire |
 |---|---|---|
-| 1 | `ResourceId` schema changed from `type: string, format: uuid, maxLength: 36` to `type: integer, format: int64, minimum: 1, maximum: 999999` (supports edit 9 below) | — supporting edit |
-| 2 | Path template `/resources/{resourceId}` renamed to `/resources/list/{MSISDN}` — inserts `list` as a segment (reserved word) and uses the uppercase `MSISDN` form matched by the secrets rule; parameter `name:` value updated to `MSISDN` (component key `ResourceId` unchanged) | `S-012` / `camara-reserved-words` (warn) + `S-017` / `camara-security-no-secrets-in-path-or-query-parameters` (warn) |
-| 3 | `email` added to `CreateResource.required` without a matching entry in `properties` | `S-030` / `camara-required-properties-exist` (warn) |
-| 4 | `maxItems: 1000` removed from the inline array schema in `GET /resources` 200 response | `S-309` / `owasp:api4:2023-array-limit` (warn) |
-| 5 | `quota: { type: integer, description: ... }` added to `CreateResource.properties` — no `format:` | `S-310` / `owasp:api4:2023-integer-format` (warn) |
-| 6 | `priority: { type: integer, format: int32, description: ... }` added to `CreateResource.properties` — no `minimum` / `maximum` | `S-311` / `owasp:api4:2023-integer-limit-legacy` (warn) |
-| 7 | `label: { type: string, description: ... }` added to `CreateResource.properties` — no `maxLength` / `enum` / `const` | `S-312` / `owasp:api4:2023-string-limit` (warn) |
-| 8 | Top-level `security:` block removed, leaving every operation without an inherited security scope | `S-303` / `owasp:api2:2023-write-restricted` (error, POST + DELETE) + `S-308` / `owasp:api2:2023-read-restricted` (warn, GET) |
-| 9 | Query parameter `id: { type: integer, format: int64, minimum: 1, maximum: 999999 }` added to `GET /resources` — parameter name matches the OWASP numeric-id heuristic (`id` or `/(_id\|Id\|-id)$/`) with an integer schema | `S-300` / `owasp:api1:2023-no-numeric-ids` (error) |
+| 1 | `ResourceId` schema changed from `type: string, format: uuid, maxLength: 36` to `type: integer, format: int64, minimum: 1, maximum: 999999`. The path parameter `resourceId` (name matches the OWASP `/(_id\|Id\|-id)$/` heuristic) now carries an integer schema. | `S-300` / `owasp:api1:2023-no-numeric-ids` (error) |
+| 2 | `email` added to `CreateResource.required` without a matching entry in `properties` | `S-030` / `camara-required-properties-exist` (warn) |
+| 3 | `maxItems: 1000` removed from the inline array schema in `GET /resources` 200 response | `S-309` / `owasp:api4:2023-array-limit` (warn) |
+| 4 | `quota: { type: integer, description: ... }` added to `CreateResource.properties` — no `format:` | `S-310` / `owasp:api4:2023-integer-format` (warn) |
+| 5 | `priority: { type: integer, format: int32, description: ... }` added to `CreateResource.properties` — no `minimum` / `maximum` | `S-311` / `owasp:api4:2023-integer-limit-legacy` (warn) |
+| 6 | `label: { type: string, description: ... }` added to `CreateResource.properties` — no `maxLength` / `enum` / `const` | `S-312` / `owasp:api4:2023-string-limit` (warn) |
+| 7 | Top-level `security:` block removed, leaving every operation without an inherited security scope | `S-303` / `owasp:api2:2023-write-restricted` (error, POST + DELETE) + `S-308` / `owasp:api2:2023-read-restricted` (warn, GET + GET) |
 
-This branch tests the 10 rules listed above (S-012, S-017, S-030, S-300,
-S-303, S-308, S-309, S-310, S-311, S-312).
-
-Edit 1 (`ResourceId` schema → integer) is kept as a **supporting edit**
-for edit 9: the OWASP S-300 rule only fires on parameters whose declared
-name matches the `id`-suffix heuristic. The path parameter `ResourceId`
-is now named `MSISDN` (edit 2) so it no longer matches the heuristic; the
-`id` query parameter in edit 9 is the trigger source. Keeping the schema
-as integer is consistent with the intent and avoids cascading `path-params`
-errors from mixed uuid-string / integer typing across operations.
+This branch tests the 8 rules listed above (S-030, S-300, S-303, S-308,
+S-309, S-310, S-311, S-312).
 
 ### Expected cascades
 
+- **S-311** (`owasp:api4:2023-integer-limit-legacy`): fires on both the
+  new `quota` property (no format / no min-max) and the `priority`
+  property (format set but no min-max). Count = 2.
 - **S-313** (`owasp:api4:2023-string-restricted`) on `sample-service.yaml`:
   the new `label` property (`type: string` without `format` / `pattern` /
   `enum`) increments the baseline S-313 count on this file. The post-filter
   keeps S-313 at hint level. Accepted.
-- **Edit 9 cascade count**: S-303 fires on every operation that mutates
-  state without a write scope in context. POST `/resources` and DELETE
-  `/resources/{msisdn}` both fire, giving count = 2. S-308 fires on GET
-  operations without a read scope — GET `/resources` and GET
-  `/resources/{msisdn}`, giving count = 2. Both counts reflect the scope
-  absence created by a single edit.
+- **Edit 7 count**: S-303 fires on every state-mutating operation that
+  lacks a write-scope security context. POST `/resources` and DELETE
+  `/resources/{resourceId}` both fire, giving count = 2. S-308 fires on
+  GET operations without a read scope — GET `/resources` and GET
+  `/resources/{resourceId}`, giving count = 2. Both counts reflect the
+  scope absence created by a single edit.
 
 ### Cascade guardrails in the edits
 
-- The component parameter key `ResourceId` is kept unchanged in edit 2
-  (only the `name:` value is updated) so existing `$ref` entries in the
-  GET and DELETE operations continue to resolve.
 - Integer `ResourceId` (edit 1) keeps `format: int64` and `minimum` /
   `maximum` present to avoid cascading into S-310 / S-311 on the path
   parameter schema.
-- `priority` (edit 6) keeps `format: int32` present to keep the S-311
+- `priority` (edit 5) keeps `format: int32` present to keep the S-311
   finding clean from S-310 noise.
-- The `id` query parameter (edit 9) carries `minimum` / `maximum` to
-  avoid cascading into S-311.
+
+### Rules excluded from this branch
+
+Two rules originally planned for this theme cannot be pinned via spec
+edits because the upstream Spectral rule implementations do not emit
+findings:
+
+- **S-012** (`camara-reserved-words`) — the custom Spectral function at
+  `linting/config/lint_function/camara-reserved-words.js` uses
+  `console.log` to report matches but does not return an
+  `errors: [{ message, path }]` array, so Spectral emits no findings
+  regardless of input. The rule is wired into the ruleset with
+  `severity: warn` and `recommended: true` but is effectively dormant.
+- **S-017** (`camara-security-no-secrets-in-path-or-query-parameters`) —
+  same pattern: the custom function at
+  `linting/config/lint_function/camara-security-no-secrets-in-path-or-query-parameters.js`
+  only logs to stdout, no finding return.
+
+Pinning either rule is pointless while the implementations are broken.
+Both should be followed up as rule-side fixes (separate work). When the
+functions are corrected to return proper `errors` arrays, dedicated
+micro-branches can pin them.
 
 ## Theme and scope
 
@@ -81,12 +91,11 @@ r4.1 rule set by logical concern area. The set is tracked upstream under
 and documented in
 [`validation/docs/regression-testing.md`](https://github.com/camaraproject/tooling/blob/validation-framework/validation/docs/regression-testing.md).
 
-This branch's theme is **schema constraints** — OWASP resource-consumption
-limits, reserved words, required-properties integrity, OWASP numeric-id
-avoidance, secrets in path parameters, and operation security. The rule
-surface is more sensitive to Commonalities pre-release evolution than
-metadata / error-handling, so this branch is a MEDIUM-risk rebase
-candidate.
+This branch's theme is **schema constraints** — required-properties
+integrity, OWASP numeric-id avoidance, OWASP resource-consumption limits
+(array / integer / string), and operation security. The rule surface is
+more sensitive to Commonalities pre-release evolution than metadata /
+error-handling, so this branch is a MEDIUM-risk rebase candidate.
 
 ## Lifecycle across Commonalities versions
 
@@ -95,7 +104,7 @@ candidate.
   `regression/r4.2-broken-spec-schema-constraints`, recapture the fixture,
   force-push. The `r4.1-*` branch is then deleted. MEDIUM risk — OWASP
   thresholds and required-properties semantics can shift across
-  Commonalities pre-releases; re-inspect edits 1, 5, 6–8, 9 after rebase.
+  Commonalities pre-releases; re-inspect edits 1, 3, 4–6, 7 after rebase.
 - **Major bump** (e.g. r4.3 → r5.1): keep the last `r4.x-*` branch as
   permanent regression coverage for the previous major, and create a
   fresh `r5.1-*` branch from `r5.1` main.
@@ -129,7 +138,7 @@ python3 validation/scripts/regression_runner.py \
     --repo camaraproject/ReleaseTest \
     --capture regression/r4.1-broken-spec-schema-constraints \
     --out /tmp/expected.yaml \
-    --capture-description "broken-spec: schema constraints, reserved words, OWASP limits, operation security"
+    --capture-description "broken-spec: schema constraints, OWASP limits, operation security"
 ```
 
 Review `/tmp/expected.yaml`, commit to `.regression/regression-expected.yaml`,
