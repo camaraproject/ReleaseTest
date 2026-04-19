@@ -1,0 +1,75 @@
+schema_version: 1
+branch: regression/r4.1-broken-spec-descriptions
+description: 'broken-spec: descriptions on operations, parameters, properties, responses,
+  array items'
+captured_at: '2026-04-19T05:58:11Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/24622315092
+tooling_ref: 3004d1c98f2c609c3c4e3d506ca537b17799e41a
+summary:
+  errors: 0
+  warnings: 13
+  hints: 20
+match_mode: exact
+findings:
+- rule_id: P-006
+  path: code/Test_definitions
+  level: hint
+  count: 2
+- rule_id: S-006
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-009
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-011
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+  count: 3
+- rule_id: S-013
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-014
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+  count: 2
+- rule_id: S-028
+  path: code/API_definitions/sample-service.yaml
+  level: hint
+- rule_id: S-029
+  path: code/API_definitions/sample-service.yaml
+  level: hint
+- rule_id: S-031
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-211
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-211
+  path: code/API_definitions/sample-service-subscriptions.yaml
+  level: hint
+  count: 7
+- rule_id: S-215
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+  count: 2
+- rule_id: S-216
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-223
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-313
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-313
+  path: code/API_definitions/sample-service.yaml
+  level: hint
+  count: 3
+- rule_id: S-314
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
+- rule_id: S-316
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
