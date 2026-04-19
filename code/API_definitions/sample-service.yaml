@@ -27,21 +27,25 @@ servers:
       apiRoot:
         default: http://localhost:9091
         description: API root, defined by the service provider, e.g. `api.example.com` or `api.example.com/somepath`
+  - url: http://insecure.example.com/sample-service
+    description: Test endpoint (insecure, for routing regression)
 tags:
   - name: Resources
     description: Operations on sample resources
+  - name: Lookup
+    description: Listing operations
 security:
   - openId:
       - sample-service:resource:read
       - sample-service:resource:write
 paths:
-  /resources:
+  /resources/:
     post:
       tags:
         - Resources
       summary: Create a resource
       description: Creates a new resource with the provided properties.
-      operationId: createResource
+      operationId: CreateResource
       parameters:
         - $ref: "../common/CAMARA_common.yaml#/components/parameters/x-correlator"
       requestBody:
@@ -77,6 +81,7 @@ paths:
     get:
       tags:
         - Resources
+        - Lookup
       summary: List resources
       description: Returns a list of all resources accessible to the API consumer.
       operationId: listResources
@@ -104,16 +109,22 @@ paths:
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic403"
         "500":
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic500"
-  /resources/{resourceId}:
+  /resources/{id}:
     get:
       tags:
         - Resources
       summary: Get a resource by ID
       description: Returns the details of a specific resource identified by its ID.
-      operationId: getResource
+      operationId: listResources
       parameters:
         - $ref: "#/components/parameters/ResourceId"
         - $ref: "../common/CAMARA_common.yaml#/components/parameters/x-correlator"
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
       responses:
         "200":
           description: Resource details
@@ -137,7 +148,7 @@ paths:
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic500"
     delete:
       tags:
-        - Resources
+        - NonExistent
       summary: Delete a resource
       description: Deletes a specific resource identified by its ID.
       operationId: deleteResource
@@ -161,6 +172,28 @@ paths:
           $ref: "#/components/responses/ResourceNotFound404"
         "500":
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic500"
+    trace:
+      tags:
+        - Resources
+      summary: Trace a resource (regression-only operation)
+      description: Trace operation present to exercise camara-http-methods.
+      operationId: traceResource
+      parameters:
+        - $ref: "#/components/parameters/ResourceId"
+        - $ref: "../common/CAMARA_common.yaml#/components/parameters/x-correlator"
+      responses:
+        "200":
+          description: Trace acknowledged
+  /Widgets/{widgetId}:
+    get:
+      tags:
+        - Resources
+      summary: Get a widget (regression-only operation)
+      description: Widget operation present to exercise path-declarations and casing rules.
+      operationId: getWidget
+      responses:
+        "200":
+          description: Widget details
 components:
   securitySchemes:
     openId:
@@ -203,7 +236,7 @@ components:
                 message: Some of the provided identifiers are not found.
   parameters:
     ResourceId:
-      name: resourceId
+      name: id
       in: path
       required: true
       description: Identifier of the resource to operate on
