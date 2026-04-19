@@ -78,6 +78,15 @@ paths:
       operationId: listResources
       parameters:
         - $ref: "../common/CAMARA_common.yaml#/components/parameters/x-correlator"
+        - name: id
+          in: query
+          required: false
+          description: Numeric resource identifier filter.
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+            maximum: 999999
       responses:
         "200":
           description: List of resources
@@ -99,7 +108,7 @@ paths:
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic403"
         "500":
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic500"
-  /resources/{msisdn}:
+  /resources/list/{MSISDN}:
     get:
       tags:
         - Resources
@@ -198,7 +207,7 @@ components:
                 message: Some of the provided identifiers are not found.
   parameters:
     ResourceId:
-      name: msisdn
+      name: MSISDN
       in: path
       required: true
       description: Identifier of the resource to operate on
@@ -239,11 +248,11 @@ components:
       type: object
       required:
         - resourceId
-        - type
+        - name
       properties:
         resourceId:
           $ref: "#/components/schemas/ResourceId"
-        type:
+        name:
           type: string
           maxLength: 128
           description: Human-readable name for the resource
