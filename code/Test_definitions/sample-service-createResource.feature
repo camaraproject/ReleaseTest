@@ -10,7 +10,7 @@ Feature: CAMARA Sample Service API, vwip - Operation: createResource
 
   Background: Common Sample Service createResource setup
     Given an environment at "apiRoot"
-    And the resource "/sample-service/vwip/resources"
+    And the resource "/sample-service/wip/resources"
     And the header "Authorization" is set to a valid access token
     And the header "Content-Type" is set to "application/json"
 
