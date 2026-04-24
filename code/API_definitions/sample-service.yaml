@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: Sample Service
+  title: Sample Service   
   description: |
     Template for a request-response CAMARA API.
 
@@ -14,8 +14,8 @@ info:
       - Option A: Pure `$ref` for responses using only generic error codes
       - Option B: Local response definition extending generic errors with API-specific codes
   license:
-    name: Apache 2.0
-    url: https://www.apache.org/licenses/LICENSE-2.0.html
+    name: MIT
+    url: https://opensource.org/licenses/MIT
   version: wip
   x-camara-commonalities: 0.7.0
 externalDocs:
@@ -40,7 +40,6 @@ paths:
       tags:
         - Resources
       summary: Create a resource
-      description: Creates a new resource with the provided properties.
       operationId: createResource
       parameters:
         - $ref: "../common/CAMARA_common.yaml#/components/parameters/x-correlator"
