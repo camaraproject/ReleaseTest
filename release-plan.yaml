@@ -38,6 +38,7 @@ apis:
     target_api_status: alpha
     main_contacts:
       - hdamker-bot
+      - hdamker
   - api_name: sample-service-subscriptions
     target_api_version: 0.1.0
     target_api_status: alpha

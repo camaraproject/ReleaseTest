@@ -30,6 +30,8 @@ servers:
 tags:
   - name: Resources
     description: Operations on sample resources
+  - name: Scenario3ForkTest
+    description: Placeholder tag for VF E2E Scenario 3 fork retest (will be reverted)
 security:
   - openId:
       - sample-service:resource:read
