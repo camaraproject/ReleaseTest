@@ -30,6 +30,8 @@ servers:
 tags:
   - name: Resources
     description: Operations on sample resources
+  - name: E2ETest
+    description: Placeholder tag for VF E2E Scenario 1 baseline (will be reverted)
 security:
   - openId:
       - sample-service:resource:read
