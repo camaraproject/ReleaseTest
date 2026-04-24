@@ -48,3 +48,8 @@ apis:
     target_api_status: alpha
     main_contacts:
       - hdamker-bot
+  - api_name: e2e-scenario-2-draft
+    target_api_version: 0.1.0
+    target_api_status: draft
+    main_contacts:
+      - hdamker-bot
