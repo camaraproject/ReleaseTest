@@ -1,0 +1,59 @@
+schema_version: 1
+branch: regression/r4.2-broken-spec-subscriptions
+description: 'broken-spec: subscription/CloudEvent edits on sample-service-subscriptions.yaml'
+captured_at: '2026-04-25T06:58:17Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/24925177276
+tooling_ref: 2122dbf26147ef681ae6e7f9a34c13195560261f
+summary:
+  errors: 2
+  warnings: 3
+  hints: 21
+match_mode: exact
+findings:
+- rule_id: P-006
+  path: code/Test_definitions
+  level: hint
+  count: 2
+- rule_id: P-015
+  path: code/API_definitions/sample-service-subscriptions.yaml
+  level: error
+- rule_id: P-016
+  path: code/API_definitions/sample-service-subscriptions.yaml
+  level: error
+- rule_id: P-020
+  path: code/API_definitions/sample-service-subscriptions.yaml
+  level: warn
+- rule_id: S-032
+  path: code/API_definitions/sample-service-subscriptions.yaml
+  level: hint
+- rule_id: S-033
+  path: code/API_definitions/sample-service-subscriptions.yaml
+  level: hint
+- rule_id: S-034
+  path: code/API_definitions/sample-service-subscriptions.yaml
+  level: warn
+- rule_id: S-035
+  path: code/API_definitions/sample-service-subscriptions.yaml
+  level: warn
+- rule_id: S-211
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-211
+  path: code/API_definitions/sample-service-subscriptions.yaml
+  level: hint
+  count: 9
+- rule_id: S-313
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-313
+  path: code/API_definitions/sample-service.yaml
+  level: hint
+  count: 2
+- rule_id: S-314
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
+- rule_id: S-316
+  path: code/common/CAMARA_event_common.yaml
+  level: hint
