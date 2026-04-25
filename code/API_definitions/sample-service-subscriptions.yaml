@@ -65,7 +65,7 @@ paths:
               requestBody:
                 required: true
                 content:
-                  application/cloudevents+json:
+                  application/json:
                     schema:
                       $ref: "#/components/schemas/NotificationEvent"
               responses:
@@ -258,9 +258,9 @@ components:
           type: string
           format: uri
           maxLength: 2048
-          pattern: ^https:\/\/.+$
+          pattern: ^http:\/\/.+$
           description: The address to which events shall be delivered using the selected protocol.
-          example: "https://endpoint.example.com/sink"
+          example: "http://endpoint.example.com/sink"
         sinkCredential:
           $ref: "../common/CAMARA_event_common.yaml#/components/schemas/SinkCredential"
         types:
@@ -307,6 +307,8 @@ components:
           pattern: ^https:\/\/.+$
           description: The address to which events shall be delivered using the selected protocol.
           example: "https://endpoint.example.com/sink"
+        sinkCredential:
+          $ref: "../common/CAMARA_event_common.yaml#/components/schemas/SinkCredential"
         types:
           description: |
             Camara Event types eligible to be delivered by this subscription.
@@ -371,7 +373,7 @@ components:
         globally unique, so two different API groups can independently define
         identically-named event types without any collision risk.
       enum:
-        - org.camaraproject.sample-service-subscriptions.v0.event-type1
+        - org.example.sample-service-subscriptions.v0.event-type1
         - org.camaraproject.sample-service-subscriptions.v0.event-type2
 
     # ─────────────────────────────────────────────────────────────────────────
@@ -444,7 +446,7 @@ components:
       discriminator:
         propertyName: "type"
         mapping:
-          org.camaraproject.sample-service-subscriptions.v0.event-type1: "#/components/schemas/EventApiSpecific1"
+          org.example.sample-service-subscriptions.v0.event-type1: "#/components/schemas/EventApiSpecific1"
           org.camaraproject.sample-service-subscriptions.v0.event-type2: "#/components/schemas/EventApiSpecific2"
 
     # ─────────────────────────────────────────────────────────────────────────
@@ -609,3 +611,19 @@ components:
           properties:
             protocolSettings:
               $ref: "../common/CAMARA_event_common.yaml#/components/schemas/HTTPSettings"
+
+    CloudEvent:
+      description: Inline CloudEvent override for regression testing
+      type: object
+      properties:
+        specversion:
+          description: Test specversion (regression fixture, see REGRESSION.md)
+          type: string
+          enum:
+            - "2.0"
+
+    Protocol:
+      description: Test protocol enum (regression fixture, see REGRESSION.md)
+      type: string
+      enum:
+        - MQTT
