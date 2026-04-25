@@ -24,11 +24,17 @@ Edits span three files.
 
 | # | Edit | Rule expected to fire |
 |---|---|---|
-| 1 | Synthetic API appended with `api_name: Bad_Name_Api`, `target_api_status: draft` | `P-001` / `check-filename-kebab-case` (error) and `P-002` / `check-filename-matches-api-name` (error) |
+| 1 | Synthetic API appended with `api_name: Bad_Name_Api`, `target_api_status: draft` | `P-001` / `check-filename-kebab-case` (error) and `P-002` / `check-filename-matches-api-name` (hint) |
 
 One edit triggers two rules on the same synthetic API: the name violates
 kebab-case, and the derived spec path
 `code/API_definitions/Bad_Name_Api.yaml` does not exist.
+
+P-002's `conditional_level` downgrades the missing-file finding to `hint`
+when `target_api_status: draft` (draft entries are intentionally allowed
+to have no spec file yet); the same finding stays `error` for
+alpha/rc/public. This branch pins the draft path; the alpha/rc/public
+path is unit-tested only.
 
 Side effect: the existing `P-006` baseline finding on
 `code/Test_definitions` gains one additional hit because the synthetic API
