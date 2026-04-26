@@ -13,6 +13,8 @@ info:
     - Two options for error responses:
       - Option A: Pure `$ref` for responses using only generic error codes
       - Option B: Local response definition extending generic errors with API-specific codes
+
+    Test marker (2026-04-26): this PR is open to verify how the legacy v0 `pr_validation` workflow behaves on API specs that use `$ref` into `code/common/`. No substantive change.
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
