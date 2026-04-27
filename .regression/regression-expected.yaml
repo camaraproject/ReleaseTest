@@ -1,12 +1,13 @@
 schema_version: 1
 branch: regression/r4.1-broken-spec-schema-constraints
-description: 'broken-spec: schema constraints, OWASP limits, operation security'
-captured_at: '2026-04-19T07:09:57Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/24623490980
-tooling_ref: 4b0842d5398277744af38cba96290c287a1cf847
+description: 'broken-spec: schema constraints, OWASP limits, operation security, reserved-words,
+  secrets-in-parameters'
+captured_at: '2026-04-27T14:13:47Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/25000139631
+tooling_ref: 54526e63f561bdd65d759648b9ec725c5414c557
 summary:
   errors: 3
-  warnings: 8
+  warnings: 11
   hints: 18
 match_mode: exact
 findings:
@@ -14,6 +15,12 @@ findings:
   path: code/Test_definitions
   level: hint
   count: 2
+- rule_id: S-012
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-017
+  path: code/API_definitions/sample-service.yaml
+  level: warn
 - rule_id: S-030
   path: code/API_definitions/sample-service.yaml
   level: warn
@@ -35,7 +42,7 @@ findings:
 - rule_id: S-308
   path: code/API_definitions/sample-service.yaml
   level: warn
-  count: 2
+  count: 3
 - rule_id: S-309
   path: code/API_definitions/sample-service.yaml
   level: warn
