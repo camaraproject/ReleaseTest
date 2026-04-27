@@ -1,12 +1,13 @@
 schema_version: 1
 branch: regression/r4.1-broken-spec-routing
-description: 'broken-spec: routing, HTTP methods, paths, tags, servers'
-captured_at: '2026-04-19T09:12:09Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/24625577981
-tooling_ref: 7c4fe8dc4715532bbbb9b6a794ebb0aa3d387fbc
+description: 'broken-spec: routing, HTTP methods, paths, tags, servers, parameter-name
+  casing'
+captured_at: '2026-04-27T14:12:16Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/25000068186
+tooling_ref: 54526e63f561bdd65d759648b9ec725c5414c557
 summary:
   errors: 10
-  warnings: 7
+  warnings: 8
   hints: 18
 match_mode: exact
 findings:
@@ -34,6 +35,9 @@ findings:
   path: code/API_definitions/sample-service.yaml
   level: warn
 - rule_id: S-024
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-036
   path: code/API_definitions/sample-service.yaml
   level: warn
 - rule_id: S-211
