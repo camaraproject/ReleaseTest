@@ -36,9 +36,10 @@ and collisions are avoided by design.
 | 8 | A new `trace:` operation added to `/resources/{id}` (`operationId: traceResource`, `tags: [Resources]`, summary + description, `200` response). `trace` is not in CAMARA's allowed HTTP method set. | `S-003` / `camara-http-methods` (error) |
 | 9 | A new path `/Widgets/{widgetId}` added with a single GET operation (`operationId: getWidget`, `tags: [Resources]`, summary + description, `200` response) and **no `parameters:` block** declaring `widgetId`. The path key is PascalCase, breaking kebab-case. | `S-008` / `camara-parameter-casing-convention` (error) + `S-227` / `path-params` (error) |
 | 10 | A second entry appended to `servers:` with `url: http://insecure.example.com/sample-service`. The plain `http://` URL violates the OWASP HTTPS-only rule. | `S-306` / `owasp:api8:2023-no-server-http` (error) |
+| 11 | A query parameter `Filter_id` (PascalCase + underscore) added to GET `/resources/{id}`. The schema declares `description:`, `maxLength: 64`, and `pattern:` to avoid S-009 / S-312 / S-313 cascades — only the parameter name is the intended defect. | `S-036` / `camara-parameter-name-casing-convention` (warn) |
 
-This branch tests the 11 rules listed above (S-002, S-003, S-007, S-008,
-S-010, S-217, S-220, S-222, S-225, S-227, S-306).
+This branch tests the 12 rules listed above (S-002, S-003, S-007, S-008,
+S-010, S-036, S-217, S-220, S-222, S-225, S-227, S-306).
 
 **S-008 fires twice** (count=2): once on `/resources/` (the trailing-slash
 path also fails the kebab-case regex because the pattern requires content
@@ -87,12 +88,6 @@ S-008 cascade is a structural side-effect.
 
 The following routing-related rules were considered but excluded:
 
-- **S-008 parameter-name casing gap** — the rule's name and Linting-rules.md
-  heading suggest it validates parameter naming, but the implementation
-  only validates path-key kebab-case. Design Guide §5.7.4 requires
-  parameter names in lowerCamelCase, which is not currently checked. This
-  branch pins the implemented behavior (path-key casing); the
-  parameter-name casing gap is filed as a separate rule-side improvement.
 - **S-224** / `path-declarations-must-exist` — initially planned to
   co-pin alongside S-227 on `/Widgets/{widgetId}`, but Spectral's
   `path-declarations-must-exist` actually checks for empty parameter

@@ -119,6 +119,14 @@ paths:
       parameters:
         - $ref: "#/components/parameters/ResourceId"
         - $ref: "../common/CAMARA_common.yaml#/components/parameters/x-correlator"
+        - name: Filter_id
+          in: query
+          required: false
+          description: Filter resources by ID prefix (intentionally non-camelCase to trigger S-036).
+          schema:
+            type: string
+            maxLength: 64
+            pattern: "^[A-Za-z0-9_-]+$"
       requestBody:
         required: false
         content:
