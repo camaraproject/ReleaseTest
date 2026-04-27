@@ -32,10 +32,12 @@ and collisions are avoided by design.
 | 4 | `quota: { type: integer, description: ... }` added to `CreateResource.properties` — no `format:` | `S-310` / `owasp:api4:2023-integer-format` (warn) |
 | 5 | `priority: { type: integer, format: int32, description: ... }` added to `CreateResource.properties` — no `minimum` / `maximum` | `S-311` / `owasp:api4:2023-integer-limit-legacy` (warn) |
 | 6 | `label: { type: string, description: ... }` added to `CreateResource.properties` — no `maxLength` / `enum` / `const` | `S-312` / `owasp:api4:2023-string-limit` (warn) |
-| 7 | Top-level `security:` block removed, leaving every operation without an inherited security scope | `S-303` / `owasp:api2:2023-write-restricted` (error, POST + DELETE) + `S-308` / `owasp:api2:2023-read-restricted` (warn, GET + GET) |
+| 7 | Top-level `security:` block removed, leaving every operation without an inherited security scope | `S-303` / `owasp:api2:2023-write-restricted` (error, POST + DELETE) + `S-308` / `owasp:api2:2023-read-restricted` (warn, GET + GET + GET) |
+| 8 | New path `/list` (standalone reserved word as path segment) with a minimal GET operation. | `S-012` / `camara-reserved-words` (warn) |
+| 9 | Query parameter `phoneNumber` added to GET `/resources/{resourceId}`. Schema declares description, maxLength, pattern to keep S-009 / S-312 / S-313 silent. | `S-017` / `camara-security-no-secrets-in-path-or-query-parameters` (warn) |
 
-This branch tests the 8 rules listed above (S-030, S-300, S-303, S-308,
-S-309, S-310, S-311, S-312).
+This branch tests the 10 rules listed above (S-012, S-017, S-030, S-300,
+S-303, S-308, S-309, S-310, S-311, S-312).
 
 ### Expected cascades
 
@@ -49,9 +51,10 @@ S-309, S-310, S-311, S-312).
 - **Edit 7 count**: S-303 fires on every state-mutating operation that
   lacks a write-scope security context. POST `/resources` and DELETE
   `/resources/{resourceId}` both fire, giving count = 2. S-308 fires on
-  GET operations without a read scope — GET `/resources` and GET
-  `/resources/{resourceId}`, giving count = 2. Both counts reflect the
-  scope absence created by a single edit.
+  GET operations without a read scope — GET `/resources`, GET
+  `/resources/{resourceId}`, and the new GET `/list` (edit 8), giving
+  count = 3. Both counts reflect the scope absence created by edit 7
+  amplified by the new GET introduced in edit 8.
 
 ### Cascade guardrails in the edits
 
@@ -60,28 +63,6 @@ S-309, S-310, S-311, S-312).
   parameter schema.
 - `priority` (edit 5) keeps `format: int32` present to keep the S-311
   finding clean from S-310 noise.
-
-### Rules excluded from this branch
-
-Two rules originally planned for this theme cannot be pinned via spec
-edits because the upstream Spectral rule implementations do not emit
-findings:
-
-- **S-012** (`camara-reserved-words`) — the custom Spectral function at
-  `linting/config/lint_function/camara-reserved-words.js` uses
-  `console.log` to report matches but does not return an
-  `errors: [{ message, path }]` array, so Spectral emits no findings
-  regardless of input. The rule is wired into the ruleset with
-  `severity: warn` and `recommended: true` but is effectively dormant.
-- **S-017** (`camara-security-no-secrets-in-path-or-query-parameters`) —
-  same pattern: the custom function at
-  `linting/config/lint_function/camara-security-no-secrets-in-path-or-query-parameters.js`
-  only logs to stdout, no finding return.
-
-Pinning either rule is pointless while the implementations are broken.
-Both should be followed up as rule-side fixes (separate work). When the
-functions are corrected to return proper `errors` arrays, dedicated
-micro-branches can pin them.
 
 ## Theme and scope
 

@@ -99,6 +99,37 @@ paths:
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic403"
         "500":
           $ref: "../common/CAMARA_common.yaml#/components/responses/Generic500"
+  /list:
+    get:
+      tags:
+        - Resources
+      summary: List items via reserved-word path segment
+      description: Standalone reserved-word path segment intended to trigger S-012. Test only.
+      operationId: listItems
+      parameters:
+        - $ref: "../common/CAMARA_common.yaml#/components/parameters/x-correlator"
+      responses:
+        "200":
+          description: Items
+          headers:
+            x-correlator:
+              $ref: "../common/CAMARA_common.yaml#/components/headers/x-correlator"
+          content:
+            application/json:
+              schema:
+                type: array
+                minItems: 0
+                maxItems: 100
+                items:
+                  $ref: "#/components/schemas/Resource"
+        "400":
+          $ref: "../common/CAMARA_common.yaml#/components/responses/Generic400"
+        "401":
+          $ref: "../common/CAMARA_common.yaml#/components/responses/Generic401"
+        "403":
+          $ref: "../common/CAMARA_common.yaml#/components/responses/Generic403"
+        "500":
+          $ref: "../common/CAMARA_common.yaml#/components/responses/Generic500"
   /resources/{resourceId}:
     get:
       tags:
@@ -109,6 +140,14 @@ paths:
       parameters:
         - $ref: "#/components/parameters/ResourceId"
         - $ref: "../common/CAMARA_common.yaml#/components/parameters/x-correlator"
+        - name: phoneNumber
+          in: query
+          required: false
+          description: Phone number filter (intentionally a sensitive identifier to trigger S-017).
+          schema:
+            type: string
+            maxLength: 32
+            pattern: "^[0-9+]+$"
       responses:
         "200":
           description: Resource details
