@@ -1,14 +1,14 @@
 schema_version: 1
-branch: regression/r4.1-broken-spec-schema-constraints
+branch: regression/r4.2-broken-spec-schema-constraints
 description: 'broken-spec: schema constraints, OWASP limits, operation security, reserved-words,
   secrets-in-parameters'
-captured_at: '2026-04-27T14:13:47Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/25000139631
-tooling_ref: 54526e63f561bdd65d759648b9ec725c5414c557
+captured_at: '2026-04-28T05:54:31Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/25036413339
+tooling_ref: 6c1f295aded726abbf25db2e0a1df7ba96c440a2
 summary:
   errors: 3
   warnings: 11
-  hints: 18
+  hints: 19
 match_mode: exact
 findings:
 - rule_id: P-006
@@ -64,6 +64,9 @@ findings:
   path: code/API_definitions/sample-service.yaml
   level: hint
   count: 3
+- rule_id: S-313
+  path: code/common/CAMARA_common.yaml
+  level: hint
 - rule_id: S-314
   path: code/common/CAMARA_event_common.yaml
   level: hint
