@@ -1,7 +1,6 @@
-# `regression/r4.1-broken-spec-error-handling`
+# `regression/r4.2-broken-spec-error-handling`
 
-Broken-spec regression fixture for the CAMARA Validation Framework r4.1
-ruleset. This branch applies a set of surgical edits to
+Broken-spec regression fixture for the CAMARA Validation Framework ruleset. This branch applies a set of surgical edits to
 `code/API_definitions/sample-service.yaml` that are designed to trigger
 error-handling rules: error code format checks, success response
 requirements, and secured/validation error response requirements.
@@ -81,7 +80,7 @@ validation orchestrator actually resolved at capture time, read from
 ```bash
 python3 validation/scripts/regression_runner.py \
     --repo camaraproject/ReleaseTest \
-    --branch-filter 'regression/r4.1-broken-spec-error-handling'
+    --branch-filter 'regression/r4.2-broken-spec-error-handling'
 ```
 
 Expected: `PASS: 1/1 branches`.
@@ -91,7 +90,7 @@ Expected: `PASS: 1/1 branches`.
 ```bash
 python3 validation/scripts/regression_runner.py \
     --repo camaraproject/ReleaseTest \
-    --capture regression/r4.1-broken-spec-error-handling \
+    --capture regression/r4.2-broken-spec-error-handling \
     --out /tmp/expected.yaml \
     --capture-description "broken-spec: error-code/success-response/401/validation edits on sample-service.yaml"
 ```
