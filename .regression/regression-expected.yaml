@@ -1,13 +1,13 @@
 schema_version: 1
-branch: regression/r4.1-broken-spec-test-files
+branch: regression/r4.2-broken-spec-test-files
 description: 'broken-spec: P-001/002/004/005 + gherkin G-002/014/016/019/021/024/025'
-captured_at: '2026-04-25T18:57:28Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/24938205774
-tooling_ref: 4b48ff649a17171e02d3559cfb7e45623949705c
+captured_at: '2026-04-28T05:23:14Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/25035461168
+tooling_ref: 6c1f295aded726abbf25db2e0a1df7ba96c440a2
 summary:
   errors: 3
   warnings: 8
-  hints: 19
+  hints: 20
 match_mode: exact
 findings:
 - rule_id: G-002
@@ -64,6 +64,9 @@ findings:
   path: code/API_definitions/sample-service.yaml
   level: hint
   count: 2
+- rule_id: S-313
+  path: code/common/CAMARA_common.yaml
+  level: hint
 - rule_id: S-314
   path: code/common/CAMARA_event_common.yaml
   level: hint
