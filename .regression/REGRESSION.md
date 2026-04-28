@@ -1,7 +1,6 @@
-# `regression/r4.1-broken-spec-routing`
+# `regression/r4.2-broken-spec-routing`
 
-Broken-spec regression fixture for the CAMARA Validation Framework r4.1
-ruleset. This branch applies a small set of surgical edits to
+Broken-spec regression fixture for the CAMARA Validation Framework ruleset. This branch applies a small set of surgical edits to
 `code/API_definitions/sample-service.yaml` that are designed to trigger a
 specific group of "routing" rules — path naming, HTTP method discipline,
 operationId conventions, path parameter declaration, tags, and server URL
@@ -153,7 +152,7 @@ validation orchestrator actually resolved at capture time, read from
 ```bash
 python3 validation/scripts/regression_runner.py \
     --repo camaraproject/ReleaseTest \
-    --branch-filter 'regression/r4.1-broken-spec-routing'
+    --branch-filter 'regression/r4.2-broken-spec-routing'
 ```
 
 ## How to recapture
@@ -163,7 +162,7 @@ After an intentional framework change:
 ```bash
 python3 validation/scripts/regression_runner.py \
     --repo camaraproject/ReleaseTest \
-    --capture regression/r4.1-broken-spec-routing \
+    --capture regression/r4.2-broken-spec-routing \
     --out /tmp/expected.yaml \
     --capture-description "broken-spec: routing, HTTP methods, paths, tags, servers"
 ```
