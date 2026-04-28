@@ -1,13 +1,13 @@
 schema_version: 1
 branch: regression/r4.2-broken-spec-yaml-fundamentals
-description: 'broken-spec: YAML formatting + basic Spectral structure rules'
-captured_at: '2026-04-28T05:51:07Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/25036303856
-tooling_ref: 6c1f295aded726abbf25db2e0a1df7ba96c440a2
+description: broken-spec yaml-fundamentals recapture after S-314/S-316 mute (tooling#240)
+captured_at: '2026-04-28T18:06:02Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/25069561915
+tooling_ref: c8aae18609eb830475fd852689abb1a08b9eafcc
 summary:
   errors: 19
   warnings: 0
-  hints: 19
+  hints: 17
 match_mode: exact
 findings:
 - rule_id: P-006
@@ -41,12 +41,6 @@ findings:
   count: 2
 - rule_id: S-313
   path: code/common/CAMARA_common.yaml
-  level: hint
-- rule_id: S-314
-  path: code/common/CAMARA_event_common.yaml
-  level: hint
-- rule_id: S-316
-  path: code/common/CAMARA_event_common.yaml
   level: hint
 - rule_id: Y-001
   path: code/API_definitions/sample-service.yaml
