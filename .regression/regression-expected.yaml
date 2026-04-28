@@ -1,14 +1,14 @@
 schema_version: 1
-branch: regression/r4.1-broken-spec-routing
+branch: regression/r4.2-broken-spec-routing
 description: 'broken-spec: routing, HTTP methods, paths, tags, servers, parameter-name
   casing'
-captured_at: '2026-04-27T14:12:16Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/25000068186
-tooling_ref: 54526e63f561bdd65d759648b9ec725c5414c557
+captured_at: '2026-04-28T05:55:42Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/25036451054
+tooling_ref: 6c1f295aded726abbf25db2e0a1df7ba96c440a2
 summary:
   errors: 10
   warnings: 8
-  hints: 18
+  hints: 19
 match_mode: exact
 findings:
 - rule_id: P-004
@@ -78,6 +78,9 @@ findings:
   path: code/API_definitions/sample-service.yaml
   level: hint
   count: 2
+- rule_id: S-313
+  path: code/common/CAMARA_common.yaml
+  level: hint
 - rule_id: S-314
   path: code/common/CAMARA_event_common.yaml
   level: hint
