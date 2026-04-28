@@ -1,7 +1,6 @@
-# `regression/r4.1-broken-spec-yaml-fundamentals`
+# `regression/r4.2-broken-spec-yaml-fundamentals`
 
-Broken-spec regression fixture for the CAMARA Validation Framework r4.1
-ruleset. This branch applies a set of surgical edits to
+Broken-spec regression fixture for the CAMARA Validation Framework ruleset. This branch applies a set of surgical edits to
 `code/API_definitions/sample-service.yaml` that are designed to trigger
 YAML-level formatting rules and two basic Spectral structure rules.
 
@@ -85,5 +84,5 @@ validation orchestrator actually resolved at capture time, read from
 ```bash
 python3 validation/scripts/regression_runner.py \
     --repo camaraproject/ReleaseTest \
-    --branch-filter 'regression/r4.1-broken-spec-yaml-fundamentals'
+    --branch-filter 'regression/r4.2-broken-spec-yaml-fundamentals'
 ```
