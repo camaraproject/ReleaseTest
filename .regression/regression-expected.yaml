@@ -1,14 +1,14 @@
 schema_version: 1
-branch: regression/r4.1-broken-spec-descriptions
+branch: regression/r4.2-broken-spec-descriptions
 description: 'broken-spec: descriptions on operations, parameters, properties, responses,
   array items'
-captured_at: '2026-04-19T05:58:11Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/24622315092
-tooling_ref: 3004d1c98f2c609c3c4e3d506ca537b17799e41a
+captured_at: '2026-04-28T05:53:24Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/25036377009
+tooling_ref: 6c1f295aded726abbf25db2e0a1df7ba96c440a2
 summary:
   errors: 0
   warnings: 13
-  hints: 20
+  hints: 21
 match_mode: exact
 findings:
 - rule_id: P-006
@@ -67,6 +67,9 @@ findings:
   path: code/API_definitions/sample-service.yaml
   level: hint
   count: 3
+- rule_id: S-313
+  path: code/common/CAMARA_common.yaml
+  level: hint
 - rule_id: S-314
   path: code/common/CAMARA_event_common.yaml
   level: hint
