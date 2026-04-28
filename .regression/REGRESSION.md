@@ -5,11 +5,9 @@ subscription/CloudEvent rules. This branch applies a small set of surgical
 edits to `code/API_definitions/sample-service-subscriptions.yaml` that are
 designed to trigger a specific group of subscription-scoped rules.
 
-This is the first regression branch in the **r4.2 line**. ReleaseTest
-`main` advanced to `commonalities_release: r4.2` on 2026-04-24 (PR#120),
-which activated the r4.2-gated rules `P-015` and `P-020`. The seven
-existing `regression/r4.1-broken-spec-*` branches stay pinned to r4.1 and
-will migrate to r4.2 one-by-one in future sessions.
+All regression branches are on the **r4.2 line**. ReleaseTest `main`
+advanced to `commonalities_release: r4.2` on 2026-04-24 (PR#120), which
+activated the r4.2-gated rules `P-015` and `P-020`.
 
 ## Purpose
 
