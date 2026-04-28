@@ -1,7 +1,6 @@
-# `regression/r4.1-broken-spec-test-files`
+# `regression/r4.2-broken-spec-test-files`
 
-Broken-spec regression fixture for the CAMARA Validation Framework r4.1
-ruleset. This branch exercises the Python engine (P-*) and gherkin engine
+Broken-spec regression fixture for the CAMARA Validation Framework ruleset. This branch exercises the Python engine (P-*) and gherkin engine
 (G-*) -- engines that are otherwise unpinned by regression -- via surgical
 edits to `release-plan.yaml`, one API spec, and one `.feature` file.
 
@@ -39,7 +38,7 @@ path is unit-tested only.
 Side effect: the existing `P-006` baseline finding on
 `code/Test_definitions` gains one additional hit because the synthetic API
 has no matching `.feature` file. The baseline pin for `P-006` stays with
-`regression/r4.1-main-baseline`; this branch's fixture just records the
+`regression/r4.2-main-baseline`; this branch's fixture just records the
 higher count (3 instead of 2) as part of its independent snapshot.
 
 Per-API Python checks that load the spec file (P-003, P-004, P-005, P-011,
@@ -47,8 +46,8 @@ P-014, P-016, ...) bail early when the spec is missing, so no unintended
 fallout. Spectral and yamllint are glob-driven and ignore nonexistent
 files.
 
-`release-plan.yaml` also pins `commonalities_release: r4.1` and
-`identity_consent_management_release: r4.1` (aligned with the sibling
+`release-plan.yaml` also pins `commonalities_release: r4.2` and
+`identity_consent_management_release: r4.2` (aligned with the sibling
 regression branches) so that the P-021 cache-sync check stays gated off
 on this branch -- the r99.99 test state on `main` is orthogonal to what
 this fixture is intended to pin.
@@ -94,7 +93,7 @@ G-002, G-014, G-016, G-019, G-021, G-024, G-025), no more.
   different coverage mechanism (unit-test-level fixtures or a
   dedicated `main` / snapshot-context regression path).
 - **P-006** `check-test-files-exist` -- already pinned by
-  `regression/r4.1-main-baseline`. Pinning it again on this branch would
+  `regression/r4.2-main-baseline`. Pinning it again on this branch would
   double-count. The +1 count delta from the synthetic API is captured in
   the fixture but ownership stays with the baseline branch.
 - **P-008** `check-test-directory-exists` -- can only be triggered by
@@ -105,7 +104,7 @@ G-002, G-014, G-016, G-019, G-021, G-024, G-025), no more.
 ## Theme and scope
 
 This is branch 8 (optional) of a planned set of 8 broken-spec branches
-covering the r4.1 rule set by logical concern area. The set is tracked
+covering the rule set by logical concern area. The set is tracked
 upstream under
 [ReleaseManagement#483](https://github.com/camaraproject/ReleaseManagement/issues/483)
 and documented in
@@ -143,7 +142,7 @@ validation orchestrator actually resolved at capture time, read from
 ```bash
 python3 validation/scripts/regression_runner.py \
     --repo camaraproject/ReleaseTest \
-    --branch-filter 'regression/r4.1-broken-spec-test-files'
+    --branch-filter 'regression/r4.2-broken-spec-test-files'
 ```
 
 Expected: `PASS: 1/1 branches`.
@@ -153,7 +152,7 @@ Expected: `PASS: 1/1 branches`.
 ```bash
 python3 validation/scripts/regression_runner.py \
     --repo camaraproject/ReleaseTest \
-    --capture regression/r4.1-broken-spec-test-files \
+    --capture regression/r4.2-broken-spec-test-files \
     --out /tmp/expected.yaml \
     --capture-description "broken-spec: P-001/002/004/005 + selected gherkin rules"
 ```
