@@ -1,14 +1,13 @@
 schema_version: 1
 branch: regression/r4.2-broken-spec-routing
-description: 'broken-spec: routing, HTTP methods, paths, tags, servers, parameter-name
-  casing'
-captured_at: '2026-04-28T05:55:42Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/25036451054
-tooling_ref: 6c1f295aded726abbf25db2e0a1df7ba96c440a2
+description: broken-spec routing recapture after S-314/S-316 mute (tooling#240)
+captured_at: '2026-04-28T18:06:03Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/25069551448
+tooling_ref: c8aae18609eb830475fd852689abb1a08b9eafcc
 summary:
   errors: 10
   warnings: 8
-  hints: 19
+  hints: 17
 match_mode: exact
 findings:
 - rule_id: P-004
@@ -80,12 +79,6 @@ findings:
   count: 2
 - rule_id: S-313
   path: code/common/CAMARA_common.yaml
-  level: hint
-- rule_id: S-314
-  path: code/common/CAMARA_event_common.yaml
-  level: hint
-- rule_id: S-316
-  path: code/common/CAMARA_event_common.yaml
   level: hint
 - rule_id: S-318
   path: code/API_definitions/sample-service.yaml
