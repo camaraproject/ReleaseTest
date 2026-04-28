@@ -1,13 +1,14 @@
 schema_version: 1
-branch: regression/r4.1-main-baseline
-description: baseline recapture after tooling#176 (S-313 suppress_schema_paths)
-captured_at: '2026-04-17T10:42:17Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/24561007720
-tooling_ref: cb7d05e907ea897cee2ab4163e14954da2888c1a
+branch: regression/r4.2-main-baseline
+description: baseline recapture for r4.2 line migration (post Step-0 sample-template
+  port)
+captured_at: '2026-04-28T05:04:13Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/25034904997
+tooling_ref: 6c1f295aded726abbf25db2e0a1df7ba96c440a2
 summary:
   errors: 0
   warnings: 0
-  hints: 17
+  hints: 18
 match_mode: exact
 findings:
 - rule_id: P-006
@@ -30,6 +31,9 @@ findings:
   path: code/API_definitions/sample-service.yaml
   level: hint
   count: 2
+- rule_id: S-313
+  path: code/common/CAMARA_common.yaml
+  level: hint
 - rule_id: S-314
   path: code/common/CAMARA_event_common.yaml
   level: hint
