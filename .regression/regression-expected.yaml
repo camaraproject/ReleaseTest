@@ -1,13 +1,13 @@
 schema_version: 1
 branch: regression/r4.2-broken-spec-api-metadata
-description: 'broken-spec: API metadata rules (info, externalDocs, servers, security)'
-captured_at: '2026-04-28T05:49:54Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/25036274385
-tooling_ref: 6c1f295aded726abbf25db2e0a1df7ba96c440a2
+description: broken-spec api-metadata recapture after S-314/S-316 mute (tooling#240)
+captured_at: '2026-04-28T18:05:53Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/25069555338
+tooling_ref: c8aae18609eb830475fd852689abb1a08b9eafcc
 summary:
   errors: 2
   warnings: 4
-  hints: 21
+  hints: 19
 match_mode: exact
 findings:
 - rule_id: P-006
@@ -59,10 +59,4 @@ findings:
   count: 2
 - rule_id: S-313
   path: code/common/CAMARA_common.yaml
-  level: hint
-- rule_id: S-314
-  path: code/common/CAMARA_event_common.yaml
-  level: hint
-- rule_id: S-316
-  path: code/common/CAMARA_event_common.yaml
   level: hint
