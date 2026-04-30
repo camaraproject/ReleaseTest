@@ -16,7 +16,7 @@ repository:
   # Release tag -- first release for a repository is r1.1
   # - New release cycle (increment first number, reset second to 1)
   # - Progression in same cycle (increment second number)
-  target_release_tag: r1.4
+  target_release_tag: r1.5
 
   # Release type being prepared (must be set before release can be triggered)
   # Options: none | pre-release-alpha | pre-release-rc | public-release | maintenance-release
@@ -35,16 +35,16 @@ dependencies:
 apis:
   - api_name: sample-service
     target_api_version: 0.1.0
-    target_api_status: alpha
+    target_api_status: rc
     main_contacts:
       - hdamker-bot
   - api_name: sample-service-subscriptions
     target_api_version: 0.1.0
-    target_api_status: alpha
+    target_api_status: rc
     main_contacts:
       - hdamker-bot
   - api_name: sample-implicit-events
     target_api_version: 0.1.0
-    target_api_status: alpha
+    target_api_status: rc
     main_contacts:
       - hdamker-bot
