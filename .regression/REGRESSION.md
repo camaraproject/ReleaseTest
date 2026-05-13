@@ -25,7 +25,7 @@ and collisions are avoided by design.
 
 | # | Edit | Rule expected to fire |
 |---|---|---|
-| 1 | `ResourceId` schema changed from `type: string, format: uuid, maxLength: 36` to `type: integer, format: int64, minimum: 1, maximum: 999999`. The path parameter `resourceId` (name matches the OWASP `/(_id\|Id\|-id)$/` heuristic) now carries an integer schema. | `S-300` / `owasp:api1:2023-no-numeric-ids` (error) |
+| 1 | `ResourceId` schema changed from `type: string, format: uuid, maxLength: 36` to `type: integer, format: int64, minimum: 1, maximum: 999999`. The path parameter `resourceId` (name matches the `/(_id\|Id\|-id)$/` heuristic) now carries an integer schema. | `S-037` / `camara-no-numeric-resource-ids` (error) |
 | 2 | `email` added to `CreateResource.required` without a matching entry in `properties` | `S-030` / `camara-required-properties-exist` (warn) |
 | 3 | `maxItems: 1000` removed from the inline array schema in `GET /resources` 200 response | `S-309` / `owasp:api4:2023-array-limit` (warn) |
 | 4 | `quota: { type: integer, description: ... }` added to `CreateResource.properties` — no `format:` | `S-310` / `owasp:api4:2023-integer-format` (warn) |
@@ -35,7 +35,7 @@ and collisions are avoided by design.
 | 8 | New path `/list` (standalone reserved word as path segment) with a minimal GET operation. | `S-012` / `camara-reserved-words` (warn) |
 | 9 | Query parameter `phoneNumber` added to GET `/resources/{resourceId}`. Schema declares description, maxLength, pattern to keep S-009 / S-312 / S-313 silent. | `S-017` / `camara-security-no-secrets-in-path-or-query-parameters` (warn) |
 
-This branch tests the 10 rules listed above (S-012, S-017, S-030, S-300,
+This branch tests the 10 rules listed above (S-012, S-017, S-030, S-037,
 S-303, S-308, S-309, S-310, S-311, S-312).
 
 ### Expected cascades
