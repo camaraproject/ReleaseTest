@@ -31,7 +31,7 @@ findings:
   path: code/API_definitions/sample-service-subscriptions.yaml
   level: hint
   count: 7
-- rule_id: S-300
+- rule_id: S-037
   path: code/API_definitions/sample-service.yaml
   level: error
 - rule_id: S-303
