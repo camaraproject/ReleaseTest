@@ -31,4 +31,6 @@ permissions:
 jobs:
   validation:
     uses: camaraproject/tooling/.github/workflows/validation.yml@main
+    with:
+      tooling_ref_override: 85266e01032a255cd2e8d3d93e252b9844e3c106
     secrets: inherit
