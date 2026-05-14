@@ -1,4 +1,4 @@
-Feature: CAMARA Sample Service API, vwip - Operation: createResource
+Feature: CAMARA Sample Service API, v0.1.0-rc.3 - Operation: createResource
 
   # Input to be provided by the implementation to the tests
   # References to OAS spec schemas refer to schemas specified in /code/API_definitions/sample-service.yaml
@@ -10,7 +10,7 @@ Feature: CAMARA Sample Service API, vwip - Operation: createResource
 
   Background: Common Sample Service createResource setup
     Given an environment at "apiRoot"
-    And the resource "/sample-service/vwip/resources"
+    And the resource "/sample-service/v0.1rc3/resources"
     And the header "Authorization" is set to a valid access token
     And the header "Content-Type" is set to "application/json"
 
