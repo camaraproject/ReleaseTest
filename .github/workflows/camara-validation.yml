@@ -31,4 +31,8 @@ permissions:
 jobs:
   validation:
     uses: camaraproject/tooling/.github/workflows/validation.yml@main
+    # Canary: pin override to `main` so fork-PR runs (no OIDC token) skip the
+    # `@v1-rc` fallback and check out tooling@main — matching push-event behaviour.
+    with:
+      tooling_ref_override: main
     secrets: inherit
