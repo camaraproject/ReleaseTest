@@ -73,6 +73,11 @@ paths:
             schema:
               $ref: "#/components/schemas/CreateResource"
       callbacks:
+        # Named-callback reference — exercises the tooling#296 S-011 / S-209
+        # bug shape (a Callback Object under components.callbacks). The full
+        # callback definition is at components.callbacks.onResourceEvent.
+        namedEvent:
+          $ref: "#/components/callbacks/onResourceEvent"
         notifications:
           "{$request.body#/sink}":
             post:
@@ -391,3 +396,27 @@ components:
               description: |
                 Event-specific payload for event-type2.
                 Replace with the actual data schema for this event type.
+
+  # Named callback under components.callbacks to exercise the S-011 / S-209
+  # mutual-exclusion bug fixed in tooling#296. A Callback Object is a map of
+  # runtime expressions to Path Item Objects and has no `description` field of
+  # its own; S-011 must not fire on this entry.
+  callbacks:
+    onResourceEvent:
+      "{$request.body#/sink}":
+        post:
+          summary: Named-callback fixture
+          description: |
+            Fixture for tooling#296 — named callback under components.callbacks
+            must NOT trigger S-011 (camara-properties-descriptions).
+          operationId: onResourceEventNotification
+          requestBody:
+            description: Notification body
+            required: true
+            content:
+              application/cloudevents+json:
+                schema:
+                  $ref: "#/components/schemas/ApiNotificationEvent"
+          responses:
+            "204":
+              description: Successful notification
