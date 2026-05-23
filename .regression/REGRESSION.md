@@ -1,4 +1,4 @@
-# `regression/r4.2-broken-spec-subscriptions`
+# `regression/r4.3-broken-spec-subscriptions`
 
 Broken-spec regression fixture for the CAMARA Validation Framework
 subscription/CloudEvent rules. This branch applies a small set of surgical
@@ -101,7 +101,7 @@ validation orchestrator actually resolved at capture time, read from
 ```bash
 python3 validation/scripts/regression_runner.py \
     --repo camaraproject/ReleaseTest \
-    --branch-filter 'regression/r4.2-broken-spec-subscriptions'
+    --branch-filter 'regression/r4.3-broken-spec-subscriptions'
 ```
 
 Expected: `PASS: 1/1 branches`.
@@ -111,7 +111,7 @@ Expected: `PASS: 1/1 branches`.
 ```bash
 python3 validation/scripts/regression_runner.py \
     --repo camaraproject/ReleaseTest \
-    --capture regression/r4.2-broken-spec-subscriptions \
+    --capture regression/r4.3-broken-spec-subscriptions \
     --out /tmp/expected.yaml \
     --capture-description "broken-spec: subscription/CloudEvent edits on sample-service-subscriptions.yaml"
 ```
