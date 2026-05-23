@@ -45,20 +45,37 @@ entry), so edits on `sample-service.yaml` do not interact with edits on
 
 ### Expected cascades
 
-- **P-030 collapses markers on `sample-implicit-events.yaml`.** Folded
-  scalar style flattens line breaks into single spaces, so the parser
-  sees BEGIN/END markers embedded inside paragraphs rather than on their
-  own lines. `_extract_markers` finds zero pairs. The "missing universal
-  template" check then fires three times — one for each of
+- **P-030 converts the four present templates on `sample-implicit-events.yaml`
+  into drift findings.** Folded scalar style joins consecutive non-blank
+  source lines with a space, so each BEGIN marker fuses with the heading
+  line directly below it (`# Authorization and authentication` etc.) and
+  each END marker fuses with the final paragraph above it. The marker
+  regex `_MARKER_RE` uses `.search()`, so the markers are still detected
+  even when content trails / leads on the same line — but the body that
+  `_extract_markers` returns loses the heading and the final paragraph
+  (both are now part of the marker lines, which are excluded from body
+  capture). The paragraph-normalised diff then trips P-027 on all four
+  wrapped templates in the file (`identifying-device-from-access-token`,
   `authorization-and-authentication`, `additional-error-responses`,
-  `request-body-strictness`. These three cascaded P-026 findings on
-  `sample-implicit-events.yaml` are by design: they are the rule
-  reporting that folded-scalar style silences the marker mechanism.
-- **P-027 only fires once for `additional-error-responses`.** The first
-  occurrence of `authorization-and-authentication` is unchanged from
-  canonical, so the drift check (which only inspects `occurrences[0]`)
-  reports no drift for that template even though edit 3 adds a
-  non-canonical second occurrence.
+  `request-body-strictness`) → 4 P-027 findings.
+- **No cascaded P-026 missing findings on `sample-implicit-events.yaml`.**
+  All three universal templates are still detected as present (just
+  drifted), so the missing-template check does not fire.
+- **P-027 only fires once for `additional-error-responses` on
+  `sample-service.yaml`.** The first occurrence of
+  `authorization-and-authentication` is unchanged from canonical, so the
+  drift check (which only inspects `occurrences[0]`) reports no drift
+  for that template even though edit 3 adds a non-canonical second
+  occurrence.
+
+### Design-doc note
+
+The design doc claims P-030 "silences" the other four rules. The
+implementation does not silence — it converts "missing" into "drift" on
+every present template (see cascade above). The signal is preserved
+(broken markers still produce findings) but the rule attribution shifts.
+This is the actual observed behavior the regression fixture pins; flag
+for design-doc §5.1 amendment.
 
 ### Cascade guardrails in the edits
 
