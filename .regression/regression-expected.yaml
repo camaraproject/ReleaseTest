@@ -1,9 +1,9 @@
 schema_version: 1
-branch: regression/r4.2-main-baseline
-description: baseline recapture for S-314/S-316 mute (tooling#240)
-captured_at: '2026-04-28T18:03:51Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/25069461753
-tooling_ref: c8aae18609eb830475fd852689abb1a08b9eafcc
+branch: regression/r4.3-main-baseline
+description: 'baseline: post-merge of r4.3 main (Commonalities r4.3 sample specs +
+  common files + info-description-templates)'
+captured_at: '2026-05-23T08:55:32Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/26328616828
 summary:
   errors: 0
   warnings: 0
