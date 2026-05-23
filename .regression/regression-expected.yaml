@@ -1,11 +1,11 @@
 schema_version: 1
 branch: regression/r4.2-broken-spec-subscriptions
-description: broken-spec subscriptions recapture after S-314/S-316 mute (tooling#240)
-captured_at: '2026-04-28T18:06:29Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/25069558620
-tooling_ref: c8aae18609eb830475fd852689abb1a08b9eafcc
+description: 'broken-spec: subscriptions/cloudevents (post-P-016 mute via tooling#298)'
+captured_at: '2026-05-23T07:56:46Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/26327478370
+tooling_ref: 847ff4f6bdbfb0159fed065f68d3273266924a8a
 summary:
-  errors: 2
+  errors: 1
   warnings: 3
   hints: 20
 match_mode: exact
@@ -15,9 +15,6 @@ findings:
   level: hint
   count: 2
 - rule_id: P-015
-  path: code/API_definitions/sample-service-subscriptions.yaml
-  level: error
-- rule_id: P-016
   path: code/API_definitions/sample-service-subscriptions.yaml
   level: error
 - rule_id: P-020
