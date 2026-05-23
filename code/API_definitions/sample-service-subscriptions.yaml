@@ -11,11 +11,41 @@ info:
 
     Note on ``security`` - ``openId`` scope: The scope values must be replaced accordingly to the format defined in the guideline document.
 
+    What follows are the mandatory CAMARA `info.description` content blocks, each bracketed by `<!-- CAMARA:MANDATORY:<name>:BEGIN/END -->` HTML comments (invisible in rendered documentation). The reference text lives in `code/common/info-description-templates.yaml` (synced from Commonalities); copy each block as-is from there. The Appendix A block (`identifying-device-from-access-token` / `identifying-phone-number-from-access-token`) is not included in this sample because its data model does not use `device` or `phoneNumber` as a subject identifier; APIs that do should include the applicable variant.
+
+    > In case of conflict, the authoritative source (API Design Guide for §3.2.3 / §3.2.4 / Appendix A; the ICM authorization-and-authentication template) takes precedence. This disclaimer applies to the mandatory texts and to any other content in this sample.
+
+    <!-- CAMARA:MANDATORY:authorization-and-authentication:BEGIN -->
+    # Authorization and authentication
+
+    The "Camara Security and Interoperability Profile" provides details of how an API consumer requests an access token. Please refer to Identity and Consent Management (https://github.com/camaraproject/IdentityAndConsentManagement/) for the released version of the profile.
+
+    The specific authorization flows to be used will be agreed upon during the onboarding process, happening between the API consumer and the API provider, taking into account the declared purpose for accessing the API, whilst also being subject to the prevailing legal framework dictated by local legislation.
+
+    In cases where personal data is processed by the API and users can exercise their rights through mechanisms such as opt-in and/or opt-out, the use of three-legged access tokens is mandatory. This ensures that the API remains in compliance with privacy regulations, upholding the principles of transparency and user-centric privacy-by-design.
+    <!-- CAMARA:MANDATORY:authorization-and-authentication:END -->
+
+    <!-- CAMARA:MANDATORY:additional-error-responses:BEGIN -->
+    # Additional CAMARA error responses
+
+    The list of error codes in this API specification is not exhaustive. Therefore the API specification MAY not document some non-mandatory error statuses as indicated in `CAMARA API Design Guide`.
+
+    Please refer to the `CAMARA_common.yaml` of the Commonalities Release associated to this API version for a complete list of error responses. The applicable Commonalities Release can be identified in the `API Readiness Checklist` document associated to this API version.
+
+    As a specific rule, error `501 - NOT_IMPLEMENTED` can be only a possible error response if it is explicitly documented in the API.
+    <!-- CAMARA:MANDATORY:additional-error-responses:END -->
+
+    <!-- CAMARA:MANDATORY:request-body-strictness:BEGIN -->
+    # Request body strictness
+
+    This API rejects requests with JSON request bodies that contain properties not declared in this specification, at any nesting level. Unknown properties result in a `400 INVALID_ARGUMENT` response.
+    <!-- CAMARA:MANDATORY:request-body-strictness:END -->
+
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   version: wip
-  x-camara-commonalities: 0.8.0-rc.2
+  x-camara-commonalities: 0.8.0
 
 externalDocs:
   description: Product documentation at CAMARA
