@@ -1,4 +1,4 @@
-# `regression/r4.2-broken-spec-schema-constraints`
+# `regression/r4.3-broken-spec-schema-constraints`
 
 Broken-spec regression fixture for the CAMARA Validation Framework ruleset. This branch applies a small set of surgical edits to
 `code/API_definitions/sample-service.yaml` that are designed to trigger a
@@ -81,7 +81,7 @@ error-handling, so this branch is a MEDIUM-risk rebase candidate.
 
 - **Minor bump** (e.g. r4.1 → r4.2): rebase this branch onto the updated
   ReleaseTest `main`, rename the prefix to
-  `regression/r4.2-broken-spec-schema-constraints`, recapture the fixture,
+  `regression/r4.3-broken-spec-schema-constraints`, recapture the fixture,
   force-push. The `r4.1-*` branch is then deleted. MEDIUM risk — OWASP
   thresholds and required-properties semantics can shift across
   Commonalities pre-releases; re-inspect edits 1, 3, 4–6, 7 after rebase.
@@ -106,7 +106,7 @@ validation orchestrator actually resolved at capture time, read from
 ```bash
 python3 validation/scripts/regression_runner.py \
     --repo camaraproject/ReleaseTest \
-    --branch-filter 'regression/r4.2-broken-spec-schema-constraints'
+    --branch-filter 'regression/r4.3-broken-spec-schema-constraints'
 ```
 
 ## How to recapture
@@ -116,7 +116,7 @@ After an intentional framework change:
 ```bash
 python3 validation/scripts/regression_runner.py \
     --repo camaraproject/ReleaseTest \
-    --capture regression/r4.2-broken-spec-schema-constraints \
+    --capture regression/r4.3-broken-spec-schema-constraints \
     --out /tmp/expected.yaml \
     --capture-description "broken-spec: schema constraints, OWASP limits, operation security"
 ```
