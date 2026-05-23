@@ -11,7 +11,7 @@
 openapi: 3.0.3
 info:
   title: Sample Implicit Events
-  description: |
+  description: >
     Template for a CAMARA API that delivers event notifications via OpenAPI
     `callbacks:` on a resource-creation operation (implicit-subscription pattern).
 
