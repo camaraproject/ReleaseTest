@@ -1,9 +1,9 @@
 schema_version: 1
-branch: regression/r4.2-broken-spec-yaml-fundamentals
-description: broken-spec yaml-fundamentals recapture after S-314/S-316 mute (tooling#240)
-captured_at: '2026-04-28T18:06:02Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/25069561915
-tooling_ref: c8aae18609eb830475fd852689abb1a08b9eafcc
+branch: regression/r4.3-broken-spec-yaml-fundamentals
+description: 'broken-spec: YAML fundamentals (Y-001..Y-013) plus S-005 OAS version
+  and S-016 schema-type-check; r4.3 line'
+captured_at: '2026-05-23T08:58:49Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/26328685057
 summary:
   errors: 19
   warnings: 0

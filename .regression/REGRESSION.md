@@ -1,4 +1,4 @@
-# `regression/r4.2-broken-spec-yaml-fundamentals`
+# `regression/r4.3-broken-spec-yaml-fundamentals`
 
 Broken-spec regression fixture for the CAMARA Validation Framework ruleset. This branch applies a set of surgical edits to
 `code/API_definitions/sample-service.yaml` that are designed to trigger
@@ -61,7 +61,7 @@ minor bumps, so this branch is a LOW-risk rebase candidate.
 ## Lifecycle across Commonalities versions
 
 - **Minor bump** (e.g. r4.1 -> r4.2): rebase this branch onto the updated
-  ReleaseTest `main`, rename the prefix to `regression/r4.2-broken-spec-yaml-fundamentals`,
+  ReleaseTest `main`, rename the prefix to `regression/r4.3-broken-spec-yaml-fundamentals`,
   recapture the fixture, force-push. The `r4.1-*` branch is then deleted.
 - **Major bump** (e.g. r4.3 -> r5.1): keep the last `r4.x-*` branch as
   permanent regression coverage for the previous major, and create a
@@ -84,5 +84,5 @@ validation orchestrator actually resolved at capture time, read from
 ```bash
 python3 validation/scripts/regression_runner.py \
     --repo camaraproject/ReleaseTest \
-    --branch-filter 'regression/r4.2-broken-spec-yaml-fundamentals'
+    --branch-filter 'regression/r4.3-broken-spec-yaml-fundamentals'
 ```
