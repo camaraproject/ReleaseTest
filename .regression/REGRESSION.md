@@ -1,4 +1,4 @@
-# `regression/r4.2-broken-spec-api-metadata`
+# `regression/r4.3-broken-spec-api-metadata`
 
 Broken-spec regression fixture for the CAMARA Validation Framework ruleset. This branch applies a small set of surgical edits to
 `code/API_definitions/sample-service.yaml` that are designed to trigger a
@@ -51,7 +51,7 @@ bumps, so this branch is a LOW-risk rebase candidate.
 ## Lifecycle across Commonalities versions
 
 - **Minor bump** (e.g. r4.1 → r4.2): rebase this branch onto the updated
-  ReleaseTest `main`, rename the prefix to `regression/r4.2-broken-spec-api-metadata`,
+  ReleaseTest `main`, rename the prefix to `regression/r4.3-broken-spec-api-metadata`,
   recapture the fixture, force-push. The `r4.1-*` branch is then deleted.
 - **Major bump** (e.g. r4.3 → r5.1): keep the last `r4.x-*` branch as
   permanent regression coverage for the previous major, and create a
@@ -74,7 +74,7 @@ validation orchestrator actually resolved at capture time, read from
 ```bash
 python3 validation/scripts/regression_runner.py \
     --repo camaraproject/ReleaseTest \
-    --branch-filter 'regression/r4.2-broken-spec-api-metadata'
+    --branch-filter 'regression/r4.3-broken-spec-api-metadata'
 ```
 
 Expected: `PASS: 1/1 branches`.
@@ -84,7 +84,7 @@ Expected: `PASS: 1/1 branches`.
 ```bash
 python3 validation/scripts/regression_runner.py \
     --repo camaraproject/ReleaseTest \
-    --capture regression/r4.2-broken-spec-api-metadata \
+    --capture regression/r4.3-broken-spec-api-metadata \
     --out /tmp/expected.yaml \
     --capture-description "broken-spec: info/license/servers/tags/403/trailing-slash edits on sample-service.yaml"
 ```
