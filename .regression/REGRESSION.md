@@ -1,4 +1,4 @@
-# `regression/r4.2-main-baseline`
+# `regression/r4.3-main-baseline`
 
 Baseline regression fixture for the CAMARA Validation Framework ruleset,
 pinned to a known-good state of `camaraproject/ReleaseTest` main.
@@ -49,7 +49,7 @@ From the tooling worktree:
 ```bash
 python3 validation/scripts/regression_runner.py \
     --repo camaraproject/ReleaseTest \
-    --branch-filter 'regression/r4.2-main-baseline'
+    --branch-filter 'regression/r4.3-main-baseline'
 ```
 
 Expected: `PASS: 1/1 branches`.
@@ -59,7 +59,7 @@ Expected: `PASS: 1/1 branches`.
 ```bash
 python3 validation/scripts/regression_runner.py \
     --repo camaraproject/ReleaseTest \
-    --capture regression/r4.2-main-baseline \
+    --capture regression/r4.3-main-baseline \
     --out /tmp/expected.yaml \
     --capture-description "baseline - ReleaseTest main, unmodified"
 ```
