@@ -1,4 +1,4 @@
-# `regression/r4.2-broken-spec-routing`
+# `regression/r4.3-broken-spec-routing`
 
 Broken-spec regression fixture for the CAMARA Validation Framework ruleset. This branch applies a small set of surgical edits to
 `code/API_definitions/sample-service.yaml` that are designed to trigger a
@@ -125,7 +125,7 @@ event restructuring.
 
 - **Minor bump** (e.g. r4.1 → r4.2): rebase this branch onto the updated
   ReleaseTest `main`, rename the prefix to
-  `regression/r4.2-broken-spec-routing`, recapture the fixture,
+  `regression/r4.3-broken-spec-routing`, recapture the fixture,
   force-push. The `r4.1-*` branch is then deleted. HIGH risk — paths,
   operationIds, parameters, and server URLs are stable across
   Commonalities pre-releases, but the underlying OWASP rule set and
@@ -152,7 +152,7 @@ validation orchestrator actually resolved at capture time, read from
 ```bash
 python3 validation/scripts/regression_runner.py \
     --repo camaraproject/ReleaseTest \
-    --branch-filter 'regression/r4.2-broken-spec-routing'
+    --branch-filter 'regression/r4.3-broken-spec-routing'
 ```
 
 ## How to recapture
@@ -162,7 +162,7 @@ After an intentional framework change:
 ```bash
 python3 validation/scripts/regression_runner.py \
     --repo camaraproject/ReleaseTest \
-    --capture regression/r4.2-broken-spec-routing \
+    --capture regression/r4.3-broken-spec-routing \
     --out /tmp/expected.yaml \
     --capture-description "broken-spec: routing, HTTP methods, paths, tags, servers"
 ```
