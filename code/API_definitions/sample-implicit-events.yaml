@@ -420,3 +420,19 @@ components:
           responses:
             "204":
               description: Successful notification
+              headers:
+                x-correlator:
+                  $ref: "../common/CAMARA_common.yaml#/components/headers/x-correlator"
+            "400":
+              $ref: "../common/CAMARA_common.yaml#/components/responses/Generic400"
+            "401":
+              $ref: "../common/CAMARA_common.yaml#/components/responses/Generic401"
+            "403":
+              $ref: "../common/CAMARA_common.yaml#/components/responses/Generic403"
+            "410":
+              $ref: "../common/CAMARA_common.yaml#/components/responses/Generic410"
+            "429":
+              $ref: "../common/CAMARA_common.yaml#/components/responses/Generic429"
+          security:
+            - {}
+            - notificationsBearerAuth: []
