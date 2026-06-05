@@ -1,0 +1,47 @@
+schema_version: 1
+branch: regression/r4.3-broken-spec-info-description-missing-canonical
+description: 'broken-spec: canonical code/common/info-description-templates.yaml removed;
+  pins P-021 missing-file and P-031 canonical-missing'
+captured_at: '2026-06-05T12:59:48Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/27016250540
+summary:
+  errors: 0
+  warnings: 4
+  hints: 16
+match_mode: exact
+findings:
+- rule_id: P-006
+  path: code/Test_definitions
+  level: hint
+  count: 2
+- rule_id: P-021
+  path: code/common/info-description-templates.yaml
+  level: warn
+- rule_id: P-031
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: warn
+- rule_id: P-031
+  path: code/API_definitions/sample-service-subscriptions.yaml
+  level: warn
+- rule_id: P-031
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-211
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-211
+  path: code/API_definitions/sample-service-subscriptions.yaml
+  level: hint
+  count: 7
+- rule_id: S-313
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-313
+  path: code/API_definitions/sample-service.yaml
+  level: hint
+  count: 2
+- rule_id: S-313
+  path: code/common/CAMARA_common.yaml
+  level: hint
