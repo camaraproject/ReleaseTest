@@ -929,3 +929,5 @@ components:
                 status: 504
                 code: TIMEOUT
                 message: Request timeout exceeded.
+
+# e2e-drift-marker: temporary non-canonical line to force common-cache stale; removed when the sync PR is merged
