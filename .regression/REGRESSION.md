@@ -2,7 +2,8 @@
 
 Broken-spec regression fixture for the CAMARA Validation Framework ruleset. This branch exercises the Python engine (P-*) and gherkin engine
 (G-*) -- engines that are otherwise unpinned by regression -- via surgical
-edits to `release-plan.yaml`, one API spec, and one `.feature` file.
+edits to `release-plan.yaml`, one API spec, one `.feature` file, and one
+legacy API readiness checklist file.
 
 ## Purpose
 
@@ -17,7 +18,7 @@ two branches are independent regression pins.
 
 ## What is broken on this branch
 
-Edits span three files.
+Edits span four files.
 
 ### `release-plan.yaml` (1 edit)
 
@@ -46,11 +47,10 @@ P-014, P-016, ...) bail early when the spec is missing, so no unintended
 fallout. Spectral and yamllint are glob-driven and ignore nonexistent
 files.
 
-`release-plan.yaml` also pins `commonalities_release: r4.2` and
-`identity_consent_management_release: r4.2` (aligned with the sibling
-regression branches) so that the P-021 cache-sync check stays gated off
-on this branch -- the r99.99 test state on `main` is orthogonal to what
-this fixture is intended to pin.
+`release-plan.yaml` pins `commonalities_release: r4.3`, which activates
+the r4.3 validation rules, including P-032. The release type remains
+`pre-release-alpha`, so P-032 is expected to report a warning on this
+branch rather than a public-release error.
 
 ### `code/API_definitions/sample-service.yaml` (1 edit)
 
@@ -78,8 +78,19 @@ segment `Sample-Service` does not match the release-plan `api_name`
 Edits 7 and 8 both touch the second scenario -- one removes its tag, the
 other blanks its name. They fire independently.
 
-This branch tests the 11 rules listed above (P-001, P-002, P-004, P-005,
-G-002, G-014, G-016, G-019, G-021, G-024, G-025), no more.
+### `documentation/API_documentation/sample-service-API-Readiness-Checklist.md` (1 file)
+
+| # | Edit | Rule expected to fire |
+|---|---|---|
+| 10 | Add a legacy API readiness checklist Markdown file | `P-032` / `check-api-readiness-checklist-removal` (warn) |
+
+The filename intentionally follows the historical
+`*-API-Readiness-Checklist.md` pattern used in API repositories. The rule
+is repo-level and detects Markdown filenames containing both `readiness`
+and `checklist`.
+
+This branch tests the 12 rules listed above (P-001, P-002, P-004, P-005,
+P-032, G-002, G-014, G-016, G-019, G-021, G-024, G-025), no more.
 
 ## Deliberately out of scope
 
@@ -128,10 +139,9 @@ LOW-risk rebase candidate.
 ## Tooling ref this branch tracks
 
 Same as the baseline branch: ReleaseTest's caller workflow hardcodes
-`uses: camaraproject/tooling/.github/workflows/validation.yml@validation-framework`
--- the HEAD of the `validation-framework` branch. Every push to
-`validation-framework` is exercised against this regression branch before
-`v1-rc` is moved for the rest of the org.
+`uses: camaraproject/tooling/.github/workflows/validation.yml@main`.
+Every push to tooling `main` is exercised against this regression branch
+before `v1-rc` is moved for the rest of the org.
 
 The `tooling_ref` field in `regression-expected.yaml` records the SHA the
 validation orchestrator actually resolved at capture time, read from
@@ -154,7 +164,7 @@ python3 validation/scripts/regression_runner.py \
     --repo camaraproject/ReleaseTest \
     --capture regression/r4.3-broken-spec-test-files \
     --out /tmp/expected.yaml \
-    --capture-description "broken-spec: P-001/002/004/005 + selected gherkin rules"
+    --capture-description "broken-spec: P-001/002/004/005/032 + selected gherkin rules"
 ```
 
 Review `/tmp/expected.yaml`, commit it to
