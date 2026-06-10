@@ -1,11 +1,11 @@
 schema_version: 1
 branch: regression/r4.3-broken-spec-routing
 description: 'broken-spec: paths, operationIds, HTTP methods; r4.3 line'
-captured_at: '2026-05-23T09:11:37Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/26328932252
+captured_at: '2026-06-10T15:11:42Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/27286027795
 summary:
-  errors: 10
-  warnings: 8
+  errors: 8
+  warnings: 10
   hints: 17
 match_mode: exact
 findings:
@@ -66,7 +66,7 @@ findings:
   level: error
 - rule_id: S-307
   path: code/API_definitions/sample-service.yaml
-  level: error
+  level: warn
   count: 2
 - rule_id: S-313
   path: code/API_definitions/sample-implicit-events.yaml
