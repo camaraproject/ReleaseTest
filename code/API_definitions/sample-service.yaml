@@ -276,5 +276,12 @@ components:
           type: string
           maxLength: 128
           description: Human-readable name for the resource
+        displayName:
+          type: string
+          nullable: true
+          maxLength: 128
+          pattern: "^[A-Za-z0-9 ._-]{1,128}$"
+          description: Optional display name for the resource
+          example: null
         device:
           $ref: "../common/CAMARA_common.yaml#/components/schemas/Device"

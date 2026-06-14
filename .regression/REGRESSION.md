@@ -40,6 +40,12 @@ cascades are expected and documented in the fixture.
 
 This branch tests the 6 rules listed above plus the S-026 cascades, no more.
 
+The `Resource.displayName` schema also carries `example: null` on a nullable
+string property. That edit is not expected to produce a finding; it exists so
+the canary continues to prove the validation engine and ruleset survive a
+literal null example value without aborting before expected findings are
+reported.
+
 ## Theme and scope
 
 This is branch 3 of a planned set of 7 broken-spec branches covering the
