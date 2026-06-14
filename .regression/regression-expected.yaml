@@ -1,8 +1,9 @@
 schema_version: 1
 branch: regression/r4.3-broken-spec-error-handling
-description: 'broken-spec: error responses and error codes; r4.3 line'
-captured_at: '2026-06-10T15:13:14Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/27286129063
+description: 'broken-spec: error responses and error codes with null example canary;
+  r4.3 line'
+captured_at: '2026-06-14T06:27:31Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/27490630435
 summary:
   errors: 1
   warnings: 7
