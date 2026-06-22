@@ -34,8 +34,9 @@ The file is otherwise the unmodified explicit-subscription template from
 | 4 | `sinkCredential` property added to the `Subscription` 2xx response schema (via `$ref` to `CAMARA_event_common.yaml#/components/schemas/SinkCredential`) | `P-016` / `check-sinkcredential-not-in-response` (error) |
 | 5 | New inline `components.schemas.CloudEvent` schema added with `properties.specversion.enum: ["2.0"]` (one schema, two rules) | `P-020` / `check-cloudevent-via-ref` (warn); `S-032` / `camara-cloudevent-specversion` (hint) |
 | 6 | New inline `components.schemas.Protocol` schema added with `enum: [MQTT]` | `S-033` / `camara-subscription-protocol-http` (hint) |
+| 7 | `Subscription.x-parser-conformance-example` added with the current `sinkCredential: { ... }` indentation shape rejected by `js-yaml@5` | `P-037` / `check-yaml-parser-conformance` (warn) |
 
-7 rules total. `type: object` and a `description` were added to the new
+8 rules total. `type: object` and a `description` were added to the new
 `CloudEvent` schema (and `description` to the new `Protocol` schema) to
 avoid `S-016` / `camara-schema-type-check` and `S-011` /
 `camara-properties-descriptions` cascades.
