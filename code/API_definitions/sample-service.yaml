@@ -153,13 +153,9 @@ paths:
       operationId: getResource
       parameters:
         - $ref: "#/components/parameters/ResourceId"
-        - $ref: "../common/CAMARA_common.yaml#/components/parameters/x-correlator"
       responses:
         "200":
           description: Resource details
-          headers:
-            x-correlator:
-              $ref: "../common/CAMARA_common.yaml#/components/headers/x-correlator"
           content:
             application/json:
               schema:
@@ -206,9 +202,6 @@ components:
     # to the generic ones defined in CAMARA_common.yaml.
     ResourceNotFound404:
       description: Resource not found
-      headers:
-        x-correlator:
-          $ref: "../common/CAMARA_common.yaml#/components/headers/x-correlator"
       content:
         application/json:
           schema:

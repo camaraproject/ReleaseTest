@@ -29,6 +29,9 @@ otherwise the unmodified request-response sample from `main`.
 | 4 | `"204"` success response removed from DELETE operation | `S-221` / `operation-success-response` (warn) |
 | 5 | `"401"` response removed from GET `/resources` operation | `S-307` / `owasp:api8:2023-define-error-responses-401` (error) |
 | 6 | `"400"` and `"422"` responses removed from POST `/resources` operation | `S-318` / `owasp:api8:2023-define-error-validation` (warn) |
+| 7 | `x-correlator` request parameter removed from GET `/resources/{resourceId}` | `S-039` / `camara-x-correlator-request-parameter` (warn) |
+| 8 | `x-correlator` response header removed from the `"200"` of GET `/resources/{resourceId}` | `S-040` / `camara-x-correlator-response-header` (warn) |
+| 9 | `x-correlator` response header removed from the local `ResourceNotFound404` component (referenced only by DELETE's `"404"`) | `S-040` / `camara-x-correlator-response-header` (warn) — the error-response-via-component case |
 
 Example values in `ResourceNotFound404` were updated to match the changed
 enum values (edits 1 and 2) to avoid cascading into `oas3-valid-media-example`.
@@ -38,7 +41,14 @@ SCREAMING_SNAKE_CASE. Edit 3 also triggers `S-026` (warn) because
 `not-found` in the dot-format code is not SCREAMING_SNAKE_CASE. These
 cascades are expected and documented in the fixture.
 
-This branch tests the 6 rules listed above plus the S-026 cascades, no more.
+This branch tests the 8 rules listed above plus the S-026 cascades, no more.
+
+Edits 7–9 keep descriptions and `content:` intact so the missing
+`x-correlator` documentation is the only defect each edit introduces
+(S-040 fires twice on this file: the success case from edit 8 and the
+error-response case from edit 9). The callback traversal of S-039 / S-040
+is exercised by tooling unit tests; a callback-scoped defect thematically
+belongs to the subscriptions branch and is deferred.
 
 The `Resource.displayName` schema also carries `example: null` on a nullable
 string property. That edit is not expected to produce a finding; it exists so
