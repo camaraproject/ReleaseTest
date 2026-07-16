@@ -60,6 +60,11 @@ S-014, S-028, S-029, S-031, S-215, S-216, S-223).
 - Empty-string response description (edit 4) preserves OAS 3.0.x schema
   validity — removing the key outright triggers `oas3-schema` hard errors
   that would mask the targeted S-013 finding.
+- The `components.callbacks.onResourceEvent` fixture in
+  `sample-implicit-events.yaml` (branch-only must-NOT-fire fixture for
+  S-011 on named callbacks, tooling#296) documents the `x-correlator`
+  request parameter and `204` response header to keep S-039 / S-040
+  (x-correlator documentation) silent.
 
 ## Theme and scope
 

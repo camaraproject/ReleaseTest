@@ -578,6 +578,8 @@ components:
             Fixture for tooling#296 — named callback under components.callbacks
             must NOT trigger S-011 (camara-properties-descriptions).
           operationId: onResourceEventNotification
+          parameters:
+            - $ref: "../common/CAMARA_common.yaml#/components/parameters/x-correlator"
           requestBody:
             description: Notification body
             required: true
