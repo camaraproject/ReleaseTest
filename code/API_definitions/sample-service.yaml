@@ -245,9 +245,14 @@ paths:
       summary: Get a widget (regression-only operation)
       description: Widget operation present to exercise path-declarations and casing rules.
       operationId: getWidget
+      parameters:
+        - $ref: "../common/CAMARA_common.yaml#/components/parameters/x-correlator"
       responses:
         "200":
           description: Widget details
+          headers:
+            x-correlator:
+              $ref: "../common/CAMARA_common.yaml#/components/headers/x-correlator"
 components:
   securitySchemes:
     openId:

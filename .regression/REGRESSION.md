@@ -33,7 +33,7 @@ and collisions are avoided by design.
 | 6 | A `requestBody:` block (`required: false`, JSON object schema) added to GET `/resources/{id}`. | `S-002` / `camara-get-no-request-body` (error) |
 | 7 | DELETE `/resources/{id}.tags` changed from `[Resources]` to `[NonExistent]` — a single, undefined tag. | `S-222` / `operation-tag-defined` (warn) |
 | 8 | A new `trace:` operation added to `/resources/{id}` (`operationId: traceResource`, `tags: [Resources]`, summary + description, `200` response). `trace` is not in CAMARA's allowed HTTP method set. | `S-003` / `camara-http-methods` (error) |
-| 9 | A new path `/Widgets/{widgetId}` added with a single GET operation (`operationId: getWidget`, `tags: [Resources]`, summary + description, `200` response) and **no `parameters:` block** declaring `widgetId`. The path key is PascalCase, breaking kebab-case. | `S-008` / `camara-parameter-casing-convention` (error) + `S-227` / `path-params` (error) |
+| 9 | A new path `/Widgets/{widgetId}` added with a single GET operation (`operationId: getWidget`, `tags: [Resources]`, summary + description, `200` response) whose `parameters:` block documents only the `x-correlator` header — **`widgetId` is not declared**. The path key is PascalCase, breaking kebab-case. | `S-008` / `camara-parameter-casing-convention` (error) + `S-227` / `path-params` (error) |
 | 10 | A second entry appended to `servers:` with `url: http://insecure.example.com/sample-service`. The plain `http://` URL violates the OWASP HTTPS-only rule. | `S-306` / `owasp:api8:2023-no-server-http` (error) |
 | 11 | A query parameter `Filter_id` (PascalCase + underscore) added to GET `/resources/{id}`. The schema declares `description:`, `maxLength: 64`, and `pattern:` to avoid S-009 / S-312 / S-313 cascades — only the parameter name is the intended defect. | `S-036` / `camara-parameter-name-casing-convention` (warn) |
 
@@ -78,8 +78,10 @@ S-008 cascade is a structural side-effect.
   `description` / `responses."200".description` to avoid pulling in the
   already-pinned S-006 / S-014 / S-215 description rules.
 - The `/Widgets/{widgetId}` GET (edit 9) likewise carries `summary` /
-  `description` / response description — the missing `parameters:`
-  declaration is the single intended defect.
+  `description` / response description, and documents the `x-correlator`
+  request parameter and `200` response header to keep S-039 / S-040
+  (x-correlator documentation) silent — the undeclared `widgetId` is the
+  single intended defect.
 - Edit 1 trailing-slash on `/resources` and edit 4's `/resources/{id}`
   are distinct keys in OAS — they coexist cleanly.
 
