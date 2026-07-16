@@ -351,7 +351,7 @@ components:
           description: The address to which events shall be delivered using the selected protocol.
           example: "https://endpoint.example.com/sink"
         sinkCredential:
-          $ref: "../common/CAMARA_event_common.yaml#/components/schemas/SinkCredential"
+          $ref: "#/components/schemas/SinkCredential"
         types:
           description: |
             Camara Event types eligible to be delivered by this subscription.
@@ -687,3 +687,50 @@ components:
       type: string
       enum:
         - MQTT
+
+    # Local copy of the common SinkCredential family (regression fixture,
+    # see REGRESSION.md) — simulates an API repo that copy-pasted the
+    # common schema and lost the writeOnly marker on a secret field.
+    SinkCredential:
+      description: Test local SinkCredential copy (regression fixture, see REGRESSION.md)
+      type: object
+      properties:
+        credentialType:
+          type: string
+          description: The type of the credential.
+          enum:
+            - ACCESSTOKEN
+      discriminator:
+        propertyName: credentialType
+        mapping:
+          ACCESSTOKEN: "#/components/schemas/AccessTokenCredential"
+      required:
+        - credentialType
+
+    AccessTokenCredential:
+      description: Test local AccessTokenCredential copy with accessToken writeOnly dropped (regression fixture, see REGRESSION.md)
+      type: object
+      allOf:
+        - $ref: "#/components/schemas/SinkCredential"
+        - type: object
+          properties:
+            accessToken:
+              description: Access token — writeOnly deliberately dropped for this fixture.
+              type: string
+              maxLength: 4096
+              pattern: '^[A-Za-z0-9\-_.]+$'
+            accessTokenExpiresUtc:
+              type: string
+              format: date-time
+              maxLength: 64
+              description: An absolute (UTC) timestamp, following RFC 3339, at which the token shall be considered expired.
+            accessTokenType:
+              type: string
+              writeOnly: true
+              description: Type of the access token.
+              enum:
+                - bearer
+          required:
+            - accessToken
+            - accessTokenExpiresUtc
+            - accessTokenType

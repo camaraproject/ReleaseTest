@@ -31,7 +31,7 @@ The file is otherwise the unmodified explicit-subscription template from
 | 1 | Callback `requestBody.content` key changed from `application/cloudevents+json` to `application/json` | `S-035` / `camara-notification-content-type` (warn) |
 | 2 | `SubscriptionRequest.sink.pattern` changed from `^https:\/\/.+$` to `^http:\/\/.+$` (and the inline `example` updated to match the new pattern, to avoid an `oas3-valid-schema-example` cascade) | `S-034` / `camara-subscription-sink-https` (warn) |
 | 3 | `ApiEventType.enum[0]` and the matching discriminator mapping key changed from `org.camaraproject...event-type1` to `org.example...event-type1` (lockstep) | `P-015` / `check-event-type-format` (error) |
-| 4 | `sinkCredential` property added to the `Subscription` 2xx response schema (via `$ref` to `CAMARA_event_common.yaml#/components/schemas/SinkCredential`) | `P-016` / `check-sinkcredential-not-in-response` (error) |
+| 4 | Local copy of the common `SinkCredential`/`AccessTokenCredential` discriminator pair added to `components.schemas`, with `writeOnly: true` dropped from `AccessTokenCredential.accessToken`; `Subscription.sinkCredential` re-pointed from the common `$ref` to the local copy | `P-016` / `check-sinkcredential-secrets-writeonly` (warn pre-public, error at public) |
 | 5 | New inline `components.schemas.CloudEvent` schema added with `properties.specversion.enum: ["2.0"]` (one schema, two rules) | `P-020` / `check-cloudevent-via-ref` (warn); `S-032` / `camara-cloudevent-specversion` (hint) |
 | 6 | New inline `components.schemas.Protocol` schema added with `enum: [MQTT]` | `S-033` / `camara-subscription-protocol-http` (hint) |
 | 7 | `Subscription.x-parser-conformance-example` added with the current `sinkCredential: { ... }` indentation shape rejected by `js-yaml@5` | `P-037` / `check-yaml-parser-conformance` (warn) |
@@ -47,6 +47,14 @@ avoid `S-016` / `camara-schema-type-check` and `S-011` /
   the baseline 7 to **9** on this branch — the two new unreferenced
   schemas `CloudEvent` and `Protocol` each add one entry. Same path,
   same level, higher count; a single fixture entry covers all 9.
+- The local `AccessTokenCredential` schema added for edit #4 is reachable
+  only via the `SinkCredential` discriminator `mapping`, not a direct
+  `$ref` — `S-211` is documented elsewhere as not reliably following
+  discriminator mappings, so it may add a **10th** `S-211` hint on this
+  file. Confirm the actual count at capture time and adjust the fixture
+  entry's `count` accordingly; the local `SinkCredential` base schema
+  itself is reachable via `Subscription.sinkCredential`'s direct `$ref`
+  and should not add to the count.
 
 ## Rule not covered on this branch
 
@@ -106,6 +114,25 @@ python3 validation/scripts/regression_runner.py \
 ```
 
 Expected: `PASS: 1/1 branches`.
+
+## Note on the pending P-016 recapture
+
+P-016 was `conditional_level.default: muted` until tooling#297's replacement
+design landed, so the current `regression-expected.yaml` on this branch has
+**no** `P-016` entry at all — the old edit's raw finding was suppressed
+before it reached `findings.json`. With P-016 now `warn`/`error` (see edit
+#4 above) and this branch's `target_api_status: alpha`
+(`release-plan.yaml`), the recapture is expected to add a **new** entry:
+
+```yaml
+- rule_id: P-016
+  path: code/API_definitions/sample-service-subscriptions.yaml
+  level: warn
+```
+
+This is an intended addition, not a regression — recapture per the
+procedure below and review the diff against this expectation before
+committing the refreshed fixture.
 
 ## How to recapture
 
