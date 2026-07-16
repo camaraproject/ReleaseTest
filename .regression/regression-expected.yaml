@@ -1,12 +1,12 @@
 schema_version: 1
 branch: regression/r4.3-broken-spec-error-handling
-description: 'broken-spec: error responses and error codes with null example canary;
-  r4.3 line'
-captured_at: '2026-06-14T06:27:31Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/27490630435
+description: 'broken-spec: error responses, error codes, x-correlator documentation,
+  null example canary; r4.3 line'
+captured_at: '2026-07-16T16:08:00Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/29514202539
 summary:
   errors: 1
-  warnings: 7
+  warnings: 10
   hints: 16
 match_mode: exact
 findings:
@@ -24,6 +24,13 @@ findings:
 - rule_id: S-027
   path: code/API_definitions/sample-service.yaml
   level: warn
+- rule_id: S-039
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-040
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+  count: 2
 - rule_id: S-211
   path: code/API_definitions/sample-implicit-events.yaml
   level: hint
