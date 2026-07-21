@@ -2,12 +2,12 @@ schema_version: 1
 branch: regression/r4.3-broken-spec-descriptions
 description: 'broken-spec: descriptions on operations/params/props + S-011 callback
   fixture; r4.3 line'
-captured_at: '2026-05-23T09:08:32Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/26328873703
+captured_at: '2026-07-21T08:38:31Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/29815038972
 summary:
   errors: 0
   warnings: 13
-  hints: 19
+  hints: 10
 match_mode: exact
 findings:
 - rule_id: P-006
@@ -40,14 +40,6 @@ findings:
 - rule_id: S-031
   path: code/API_definitions/sample-service.yaml
   level: warn
-- rule_id: S-211
-  path: code/API_definitions/sample-implicit-events.yaml
-  level: hint
-  count: 2
-- rule_id: S-211
-  path: code/API_definitions/sample-service-subscriptions.yaml
-  level: hint
-  count: 7
 - rule_id: S-215
   path: code/API_definitions/sample-service.yaml
   level: warn
