@@ -38,9 +38,9 @@ otherwise the unmodified request-response sample from `main`.
 | 14 | `InvalidTypeSchema` added with only `description` (no `type`, no combiner) | `S-016` / `camara-schema-type-check` (error) |
 | 15 | Trailing newline removed at end of file | `Y-011` / `new-line-at-end-of-file` (error) |
 
-Edit 14 also triggers `S-211` / `oas3-unused-component` (hint) because the
-new schema is not referenced anywhere. This cascade is expected and
-documented in the fixture.
+Edit 14 also triggers `S-211` / `camara-discriminator-aware-unused-component`
+(warn) because the new schema is not referenced anywhere. This cascade is
+expected and documented in the fixture.
 
 This branch tests the 15 rules listed above plus the S-211 cascade, no more.
 
