@@ -1,12 +1,12 @@
 schema_version: 1
 branch: regression/r4.3-broken-spec-api-metadata
 description: 'broken-spec: API metadata (info, servers, tags); r4.3 line'
-captured_at: '2026-05-23T09:01:59Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/26328746021
+captured_at: '2026-07-21T08:37:51Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/29814984136
 summary:
   errors: 2
   warnings: 4
-  hints: 19
+  hints: 10
 match_mode: exact
 findings:
 - rule_id: P-006
@@ -40,14 +40,6 @@ findings:
 - rule_id: S-210
   path: code/API_definitions/sample-service.yaml
   level: warn
-- rule_id: S-211
-  path: code/API_definitions/sample-implicit-events.yaml
-  level: hint
-  count: 2
-- rule_id: S-211
-  path: code/API_definitions/sample-service-subscriptions.yaml
-  level: hint
-  count: 7
 - rule_id: S-313
   path: code/API_definitions/sample-implicit-events.yaml
   level: hint
