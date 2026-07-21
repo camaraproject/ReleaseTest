@@ -1,12 +1,13 @@
 schema_version: 1
 branch: regression/r4.3-broken-spec-test-files
-description: 'broken-spec: Python + gherkin engines on test files plus API readiness checklist removal; r4.3 line'
-captured_at: '2026-05-23T09:13:02Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/26328964227
+description: 'broken-spec: Python + gherkin engines on test files plus API readiness
+  checklist removal; r4.3 line'
+captured_at: '2026-07-21T08:45:24Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/29815465995
 summary:
   errors: 3
   warnings: 9
-  hints: 18
+  hints: 9
 match_mode: exact
 findings:
 - rule_id: G-002
@@ -50,14 +51,6 @@ findings:
 - rule_id: P-032
   path: documentation/API_documentation/sample-service-API-Readiness-Checklist.md
   level: warn
-- rule_id: S-211
-  path: code/API_definitions/sample-implicit-events.yaml
-  level: hint
-  count: 2
-- rule_id: S-211
-  path: code/API_definitions/sample-service-subscriptions.yaml
-  level: hint
-  count: 7
 - rule_id: S-313
   path: code/API_definitions/sample-implicit-events.yaml
   level: hint
