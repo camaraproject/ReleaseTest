@@ -63,8 +63,9 @@ S-008 cascade is a structural side-effect.
   `{id}` rename: schema stays `string/uuid` (S-300 needs `type: integer`).
 - **S-204** / `no-$ref-siblings` and `oas3-schema` do not fire — the new
   operations and added requestBody use minimal valid OAS structures.
-- **Baseline cascades unchanged**: S-211 (unused-component) on subscription
-  files, S-313 / S-314 / S-316 hints, P-006 hint on Test_definitions.
+- **Baseline cascades unchanged**: S-313 / S-314 / S-316 hints, P-006 hint
+  on Test_definitions. (S-211 no longer fires on the subscription files
+  since the discriminator-aware rule, camaraproject/tooling#378.)
 
 ### Cascade guardrails in the edits
 
