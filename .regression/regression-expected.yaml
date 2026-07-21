@@ -2,26 +2,18 @@ schema_version: 1
 branch: regression/r4.3-main-baseline
 description: 'baseline: post-merge of r4.3 main (Commonalities r4.3 sample specs +
   common files + info-description-templates)'
-captured_at: '2026-05-23T08:55:32Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/26328616828
+captured_at: '2026-07-21T08:46:56Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/29815575996
 summary:
   errors: 0
   warnings: 0
-  hints: 16
+  hints: 7
 match_mode: exact
 findings:
 - rule_id: P-006
   path: code/Test_definitions
   level: hint
   count: 2
-- rule_id: S-211
-  path: code/API_definitions/sample-implicit-events.yaml
-  level: hint
-  count: 2
-- rule_id: S-211
-  path: code/API_definitions/sample-service-subscriptions.yaml
-  level: hint
-  count: 7
 - rule_id: S-313
   path: code/API_definitions/sample-implicit-events.yaml
   level: hint
