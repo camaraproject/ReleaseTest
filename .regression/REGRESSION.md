@@ -109,14 +109,18 @@ python3 validation/scripts/regression_runner.py \
 
 Expected: `PASS: 1/1 branches`.
 
-## Note on the pending P-016 recapture
+## P-016 recapture (done — camaraproject/tooling#383)
 
 P-016 was `conditional_level.default: muted` until tooling#297's replacement
-design landed, so the current `regression-expected.yaml` on this branch has
-**no** `P-016` entry at all — the old edit's raw finding was suppressed
-before it reached `findings.json`. With P-016 now `warn`/`error` (see edit
-#4 above) and this branch's `target_api_status: alpha`
-(`release-plan.yaml`), the recapture is expected to add a **new** entry:
+design landed in tooling#383 (merged 2026-07-21). Before that, this branch's
+`regression-expected.yaml` had **no** `P-016` entry at all — the old edit's
+raw finding was suppressed before it reached `findings.json`. The canary's
+first run against `main` after #383 merged failed exactly as expected
+(`unexpected P-016 ... expected 0, actual 1`,
+[run 29817299612](https://github.com/camaraproject/tooling/actions/runs/29817299612)),
+confirming the rewritten rule fires here. Recaptured
+(`captured_from_run` [29818049835](https://github.com/camaraproject/ReleaseTest/actions/runs/29818049835))
+and added:
 
 ```yaml
 - rule_id: P-016
@@ -124,9 +128,9 @@ before it reached `findings.json`. With P-016 now `warn`/`error` (see edit
   level: warn
 ```
 
-This is an intended addition, not a regression — recapture per the
-procedure below and review the diff against this expectation before
-committing the refreshed fixture.
+`warn`, not `error`, because this branch's `target_api_status: alpha`
+(`release-plan.yaml`). No other entry changed — confirmed by diffing the new
+capture against the prior committed fixture.
 
 ## How to recapture
 
