@@ -1,12 +1,12 @@
 schema_version: 1
 branch: regression/r4.3-broken-spec-schema-constraints
 description: 'broken-spec: schema constraints (not common files); r4.3 line'
-captured_at: '2026-05-23T09:10:00Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/26328905343
+captured_at: '2026-07-21T08:43:19Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/29815320231
 summary:
   errors: 3
   warnings: 11
-  hints: 17
+  hints: 8
 match_mode: exact
 findings:
 - rule_id: P-006
@@ -25,14 +25,6 @@ findings:
 - rule_id: S-037
   path: code/API_definitions/sample-service.yaml
   level: error
-- rule_id: S-211
-  path: code/API_definitions/sample-implicit-events.yaml
-  level: hint
-  count: 2
-- rule_id: S-211
-  path: code/API_definitions/sample-service-subscriptions.yaml
-  level: hint
-  count: 7
 - rule_id: S-303
   path: code/API_definitions/sample-service.yaml
   level: error
