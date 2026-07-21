@@ -43,18 +43,12 @@ avoid `S-016` / `camara-schema-type-check` and `S-011` /
 
 ## Expected cascade
 
-- `S-211` / `oas3-unused-component` (hint) on this file: count rises from
-  the baseline 7 to **9** on this branch — the two new unreferenced
-  schemas `CloudEvent` and `Protocol` each add one entry. Same path,
-  same level, higher count; a single fixture entry covers all 9.
-- The local `AccessTokenCredential` schema added for edit #4 is reachable
-  only via the `SinkCredential` discriminator `mapping`, not a direct
-  `$ref` — `S-211` is documented elsewhere as not reliably following
-  discriminator mappings, so it may add a **10th** `S-211` hint on this
-  file. Confirm the actual count at capture time and adjust the fixture
-  entry's `count` accordingly; the local `SinkCredential` base schema
-  itself is reachable via `Subscription.sinkCredential`'s direct `$ref`
-  and should not add to the count.
+- `S-211` / `camara-discriminator-aware-unused-component` (warn) on this
+  file: the two intentionally unreferenced schemas `CloudEvent` and
+  `Protocol` are reported as unused — a single fixture entry with count 2.
+  The seven baseline subscription/event schemas and the local
+  `AccessTokenCredential` (edit #4) are not reported: the rule follows
+  discriminator mappings (camaraproject/tooling#378).
 
 ## Rule not covered on this branch
 
