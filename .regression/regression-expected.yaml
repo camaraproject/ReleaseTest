@@ -2,12 +2,12 @@ schema_version: 1
 branch: regression/r4.3-broken-spec-info-description-mandatory
 description: 'broken-spec: mandatory info.description rules P-026..P-030 (missing,
   drift, duplicate, unknown-template-name, folded-scalar)'
-captured_at: '2026-07-21T08:40:12Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/29815136374
+captured_at: '2026-08-05T10:14:21Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/30996552233
 summary:
   errors: 1
   warnings: 2
-  hints: 13
+  hints: 12
 match_mode: exact
 findings:
 - rule_id: P-006
@@ -41,6 +41,3 @@ findings:
   path: code/API_definitions/sample-service.yaml
   level: hint
   count: 2
-- rule_id: S-313
-  path: code/common/CAMARA_common.yaml
-  level: hint
