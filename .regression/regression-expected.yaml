@@ -2,12 +2,12 @@ schema_version: 1
 branch: regression/r4.3-main-baseline
 description: 'baseline: post-merge of r4.3 main (Commonalities r4.3 sample specs +
   common files + info-description-templates)'
-captured_at: '2026-07-21T08:46:56Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/29815575996
+captured_at: '2026-08-05T10:21:02Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/30997019943
 summary:
   errors: 0
   warnings: 0
-  hints: 7
+  hints: 6
 match_mode: exact
 findings:
 - rule_id: P-006
@@ -22,6 +22,3 @@ findings:
   path: code/API_definitions/sample-service.yaml
   level: hint
   count: 2
-- rule_id: S-313
-  path: code/common/CAMARA_common.yaml
-  level: hint
