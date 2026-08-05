@@ -2,12 +2,12 @@ schema_version: 1
 branch: regression/r4.3-broken-spec-descriptions
 description: 'broken-spec: descriptions on operations/params/props + S-011 callback
   fixture; r4.3 line'
-captured_at: '2026-07-21T08:38:31Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/29815038972
+captured_at: '2026-08-05T10:12:33Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/30996445902
 summary:
   errors: 0
   warnings: 13
-  hints: 10
+  hints: 9
 match_mode: exact
 findings:
 - rule_id: P-006
@@ -58,6 +58,3 @@ findings:
   path: code/API_definitions/sample-service.yaml
   level: hint
   count: 3
-- rule_id: S-313
-  path: code/common/CAMARA_common.yaml
-  level: hint
