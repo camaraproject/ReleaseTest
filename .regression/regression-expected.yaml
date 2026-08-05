@@ -1,12 +1,12 @@
 schema_version: 1
 branch: regression/r4.3-broken-spec-api-metadata
 description: 'broken-spec: API metadata (info, servers, tags); r4.3 line'
-captured_at: '2026-07-21T08:37:51Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/29814984136
+captured_at: '2026-08-05T10:11:54Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/30996382414
 summary:
   errors: 2
   warnings: 4
-  hints: 10
+  hints: 9
 match_mode: exact
 findings:
 - rule_id: P-006
@@ -48,6 +48,3 @@ findings:
   path: code/API_definitions/sample-service.yaml
   level: hint
   count: 2
-- rule_id: S-313
-  path: code/common/CAMARA_common.yaml
-  level: hint
