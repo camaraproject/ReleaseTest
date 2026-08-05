@@ -1,12 +1,12 @@
 schema_version: 1
 branch: regression/r4.3-broken-spec-subscriptions
 description: 'broken-spec: CloudEvent, subscriptions, notifications; r4.3 line'
-captured_at: '2026-07-21T09:23:52Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/29818049835
+captured_at: '2026-08-05T10:18:09Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/30996831532
 summary:
   errors: 1
   warnings: 7
-  hints: 9
+  hints: 8
 match_mode: exact
 findings:
 - rule_id: P-006
@@ -49,6 +49,3 @@ findings:
   path: code/API_definitions/sample-service.yaml
   level: hint
   count: 2
-- rule_id: S-313
-  path: code/common/CAMARA_common.yaml
-  level: hint
