@@ -2,12 +2,12 @@ schema_version: 1
 branch: regression/r4.3-broken-spec-yaml-fundamentals
 description: 'broken-spec: YAML fundamentals (Y-001..Y-013) plus S-005 OAS version
   and S-016 schema-type-check; r4.3 line'
-captured_at: '2026-07-21T08:46:16Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/29815520651
+captured_at: '2026-08-05T10:19:58Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/30996949639
 summary:
   errors: 18
   warnings: 3
-  hints: 7
+  hints: 6
 match_mode: exact
 findings:
 - rule_id: P-006
@@ -34,9 +34,6 @@ findings:
   path: code/API_definitions/sample-service.yaml
   level: hint
   count: 2
-- rule_id: S-313
-  path: code/common/CAMARA_common.yaml
-  level: hint
 - rule_id: Y-001
   path: code/API_definitions/sample-service.yaml
   level: error
