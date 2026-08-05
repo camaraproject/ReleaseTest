@@ -1,12 +1,12 @@
 schema_version: 1
 branch: regression/r4.3-broken-spec-schema-constraints
 description: 'broken-spec: schema constraints (not common files); r4.3 line'
-captured_at: '2026-07-21T08:43:19Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/29815320231
+captured_at: '2026-08-05T10:17:31Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/30996769566
 summary:
   errors: 3
   warnings: 11
-  hints: 8
+  hints: 7
 match_mode: exact
 findings:
 - rule_id: P-006
@@ -54,6 +54,3 @@ findings:
   path: code/API_definitions/sample-service.yaml
   level: hint
   count: 3
-- rule_id: S-313
-  path: code/common/CAMARA_common.yaml
-  level: hint
