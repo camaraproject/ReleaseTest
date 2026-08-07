@@ -1,0 +1,42 @@
+schema_version: 1
+branch: regression/r4.3-broken-spec-bundler-collision
+description: "broken-spec: bundler component-renaming collision + unresolved ref on\
+  \ sample-service.yaml (captured pre-tooling#412 merge \u2014 P-040 not yet expected\
+  \ to fire)"
+captured_at: '2026-08-07T06:30:54Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/31154148615
+summary:
+  errors: 1
+  warnings: 5
+  hints: 6
+match_mode: exact
+findings:
+- rule_id: P-006
+  path: code/Test_definitions
+  level: hint
+  count: 2
+- rule_id: S-211
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-310
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-311
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+- rule_id: S-312
+  path: code/API_definitions/sample-service.yaml
+  level: warn
+  count: 2
+- rule_id: S-313
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-313
+  path: code/API_definitions/sample-service.yaml
+  level: hint
+  count: 2
+- engine: spectral
+  engine_rule: invalid-ref
+  path: code/API_definitions/sample-service.yaml
+  level: error

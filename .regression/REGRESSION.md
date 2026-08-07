@@ -13,9 +13,12 @@ The fixture records the **full** finding set this branch produces — baseline f
 from `main` **plus** the new findings triggered by the broken-spec edits. Do not compare against
 the baseline fixture; the two branches are independent regression pins.
 
-**Status: fixture not yet captured.** `.regression/regression-expected.yaml` does not exist on this
-branch yet — it is only ever produced by the runner's `--capture` mode, never hand-authored. See
-"How to recapture" below.
+**Status: captured pre-merge, on purpose.** The current `.regression/regression-expected.yaml` was
+captured before tooling#412 (P-040) merged to `validation-framework` — it does **not** include a
+`check-component-renaming-conflict` finding, since the check isn't published there yet. This is a
+deliberate before/after pin: recapturing after #412 merges should show exactly one new finding
+appear (the collision) and nothing else change, confirming the check activates cleanly with no side
+effects on top of what's already documented below. See "How to recapture".
 
 ## What is broken on this branch
 
@@ -42,6 +45,16 @@ inconsistent across occurrences.
 `TestInvalidRefProbe` is not wired to any endpoint — components are walked and bundled regardless
 of whether anything under `paths:` references them.
 
+### Side effects captured alongside the intended defects
+
+The new local `ErrorInfo` (edit 1) is deliberately drifted from the common one by omitting
+constraints, which also trips three constraint rules on its own properties: `S-310` (missing
+`format` on `status`), `S-311` (missing `minimum`/`maximum` on `status`), `S-312` (missing
+`maxLength` on `code` and `message`, hence `count: 2`). `TestInvalidRefProbe` also trips `S-211`
+(potentially unused component) since it isn't wired to any endpoint. These are expected and
+captured in the fixture alongside the two intended findings — not part of what this branch tests,
+but real consequences of the edits that "broken stays broken" needs to keep pinned too.
+
 ## Theme and scope
 
 This branch is not part of the r4.1 logical-concern-area set tracked under
@@ -64,9 +77,9 @@ python3 validation/scripts/regression_runner.py \
     --branch-filter 'regression/r4.3-broken-spec-bundler-collision'
 ```
 
-Expected today: infrastructure error (no `regression-expected.yaml` to fetch yet). Expected
-`PASS: 1/1 branches` only after tooling#412 has merged to `validation-framework` **and** the
-fixture below has been captured.
+Expected: `PASS: 1/1 branches` against the pre-#412 fixture currently committed. Once tooling#412
+merges to `validation-framework`, this will FAIL with exactly one **unexpected** finding
+(`check-component-renaming-conflict`) — that's the signal to recapture, not a bug.
 
 ## How to recapture
 
