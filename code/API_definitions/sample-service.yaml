@@ -224,7 +224,7 @@ components:
         application/json:
           schema:
             allOf:
-              - $ref: "../common/CAMARA_common.yaml#/components/schemas/ErrorInfo"
+              - $ref: "#/components/schemas/ErrorInfo"
               - type: object
                 properties:
                   status:
@@ -247,6 +247,14 @@ components:
                 status: 404
                 code: IDENTIFIER_NOT_FOUND
                 message: Some of the provided identifiers are not found.
+    # Regression fixture for unresolved-$ref detection. Not wired to any
+    # endpoint. References a component that does not exist.
+    TestInvalidRefProbe:
+      description: Test-only response, not wired to any endpoint.
+      content:
+        application/json:
+          schema:
+            $ref: "./sample-implicit-events.yaml#/components/schemas/DoesNotExist"
   parameters:
     ResourceId:
       name: resourceId
@@ -256,6 +264,30 @@ components:
       schema:
         $ref: "#/components/schemas/ResourceId"
   schemas:
+    # Regression fixture for the bundler component-renaming-conflict check
+    # (P-040). Deliberately drifted from CAMARA_common.yaml's ErrorInfo
+    # (missing format/minimum/maximum/maxLength) — same name, different
+    # content, the exact shape the check exists to catch. Used directly by
+    # ResourceNotFound404 above; the common ErrorInfo is already pulled in
+    # separately by the existing Generic4xx responses used throughout this
+    # file, which is what actually forces the bundler to notice the collision.
+    ErrorInfo:
+      type: object
+      description: A structured error response providing details about a failed request, including the HTTP status code, an error code, and a human-readable message
+      required:
+        - status
+        - code
+        - message
+      properties:
+        status:
+          type: integer
+          description: HTTP response status code
+        code:
+          type: string
+          description: A human-readable code to describe the error
+        message:
+          type: string
+          description: A human-readable description of what the event represents
     ResourceId:
       type: string
       format: uuid
