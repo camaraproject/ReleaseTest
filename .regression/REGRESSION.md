@@ -13,12 +13,11 @@ The fixture records the **full** finding set this branch produces — baseline f
 from `main` **plus** the new findings triggered by the broken-spec edits. Do not compare against
 the baseline fixture; the two branches are independent regression pins.
 
-**Status: captured pre-merge, on purpose.** The current `.regression/regression-expected.yaml` was
-captured before tooling#412 (P-040) merged to `validation-framework` — it does **not** include a
-`check-component-renaming-conflict` finding, since the check isn't published there yet. This is a
-deliberate before/after pin: recapturing after #412 merges should show exactly one new finding
-appear (the collision) and nothing else change, confirming the check activates cleanly with no side
-effects on top of what's already documented below. See "How to recapture".
+**Status: recaptured post-merge.** This fixture was first captured before tooling#412 (P-040)
+merged to `main`, deliberately without a `check-component-renaming-conflict` finding, then
+recaptured after the merge. The diff between the two captures was exactly the predicted one new
+`P-040` finding (`warnings: 5 → 6`) and nothing else — confirming the check activates cleanly with
+no side effects beyond what's already documented below.
 
 ## What is broken on this branch
 
@@ -65,9 +64,10 @@ coverage before merge since bundler-level defects had none.
 
 ## Tooling ref this branch tracks
 
-Same as the baseline branch: ReleaseTest's caller workflow hardcodes
-`uses: camaraproject/tooling/.github/workflows/validation.yml@validation-framework` — the HEAD of
-the `validation-framework` branch.
+Same as the baseline branch: ReleaseTest's caller workflow pins `tooling_ref_override: main` —
+`main` HEAD, the project's only long-lived branch. See
+[validation/docs/regression-testing.md](https://github.com/camaraproject/tooling/blob/main/validation/docs/regression-testing.md#how-tooling_ref-is-recorded)
+for why the fixture's own `tooling_ref` field is typically omitted for ReleaseTest captures.
 
 ## How to run
 
@@ -77,9 +77,7 @@ python3 validation/scripts/regression_runner.py \
     --branch-filter 'regression/r4.3-broken-spec-bundler-collision'
 ```
 
-Expected: `PASS: 1/1 branches` against the pre-#412 fixture currently committed. Once tooling#412
-merges to `validation-framework`, this will FAIL with exactly one **unexpected** finding
-(`check-component-renaming-conflict`) — that's the signal to recapture, not a bug.
+Expected: `PASS: 1/1 branches`.
 
 ## How to recapture
 
@@ -92,5 +90,4 @@ python3 validation/scripts/regression_runner.py \
 ```
 
 Review `/tmp/expected.yaml`, commit it to `.regression/regression-expected.yaml` on this branch,
-then re-run without `--capture` to verify PASS. Must wait until tooling#412 (P-040) has merged to
-`validation-framework` — capturing before that would miss the P-040 finding entirely.
+then re-run without `--capture` to verify PASS.
