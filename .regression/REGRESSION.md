@@ -13,11 +13,13 @@ The fixture records the **full** finding set this branch produces — baseline f
 from `main` **plus** the new findings triggered by the broken-spec edits. Do not compare against
 the baseline fixture; the two branches are independent regression pins.
 
-**Status: recaptured post-merge.** This fixture was first captured before tooling#412 (P-040)
-merged to `main`, deliberately without a `check-component-renaming-conflict` finding, then
-recaptured after the merge. The diff between the two captures was exactly the predicted one new
-`P-040` finding (`warnings: 5 → 6`) and nothing else — confirming the check activates cleanly with
-no side effects beyond what's already documented below.
+**Status: recaptured twice.** First captured before tooling#412 (P-040) merged to `main`,
+deliberately without a `check-component-renaming-conflict` finding, then recaptured after the
+merge — the diff was exactly the predicted one new `P-040` finding (`warnings: 5 → 6`) and nothing
+else. Recaptured again after
+[tooling#433](https://github.com/camaraproject/tooling/pull/433) renamed the unresolved-`$ref`
+finding from the Spectral engine rule `invalid-ref` to the stable framework rule ID `S-229`; the
+diff was exactly that rename and nothing else.
 
 ## What is broken on this branch
 
@@ -28,7 +30,7 @@ request-response sample from `main`.
 |---|---|---|
 | 1 | New local `ErrorInfo` schema added under `components.schemas`, deliberately drifted from `CAMARA_common.yaml`'s `ErrorInfo` (missing `format`/`minimum`/`maximum`/`maxLength`) | `check-component-renaming-conflict` / `P-040` (warn at this API's `wip` status; error only at `public`) |
 | 2 | `ResourceNotFound404`'s `allOf` redirected from the common `ErrorInfo` (`../common/CAMARA_common.yaml#/components/schemas/ErrorInfo`) to the new local one (`#/components/schemas/ErrorInfo`) | same finding as #1 — this is what makes the local name collide with the common `ErrorInfo` already pulled in transitively via the `Generic4xx` responses used throughout this file |
-| 3 | New unused response `TestInvalidRefProbe` added, referencing a nonexistent component (`./sample-implicit-events.yaml#/components/schemas/DoesNotExist`) | the framework's unresolved-`$ref` finding |
+| 3 | New unused response `TestInvalidRefProbe` added, referencing a nonexistent component (`./sample-implicit-events.yaml#/components/schemas/DoesNotExist`) | `S-229` (the framework's unresolved-`$ref` finding) |
 
 Neither the component-renaming-conflict check nor unresolved-ref detection had any regression
 coverage before this branch, confirmed by checking every other `regression/*` branch's fixture.

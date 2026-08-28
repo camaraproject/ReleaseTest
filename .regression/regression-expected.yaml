@@ -1,9 +1,8 @@
 schema_version: 1
 branch: regression/r4.3-broken-spec-bundler-collision
-description: 'broken-spec: bundler component-renaming collision + unresolved ref on
-  sample-service.yaml (recaptured post-tooling#412 merge)'
-captured_at: '2026-08-07T09:34:23Z'
-captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/31166375095
+description: invalid-ref renamed to S-229 (tooling#433)
+captured_at: '2026-08-28T17:31:11Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/33194983588
 summary:
   errors: 1
   warnings: 6
@@ -20,6 +19,9 @@ findings:
 - rule_id: S-211
   path: code/API_definitions/sample-service.yaml
   level: warn
+- rule_id: S-229
+  path: code/API_definitions/sample-service.yaml
+  level: error
 - rule_id: S-310
   path: code/API_definitions/sample-service.yaml
   level: warn
@@ -38,7 +40,3 @@ findings:
   path: code/API_definitions/sample-service.yaml
   level: hint
   count: 2
-- engine: spectral
-  engine_rule: invalid-ref
-  path: code/API_definitions/sample-service.yaml
-  level: error
