@@ -1,4 +1,4 @@
-Feature: CAMARA Sample Implicit Events API, vwip - Operation getResource
+Feature: CAMARA Sample Implicit Events API, v0.1.0-alpha.6 - Operation getResource
 
   # Input to be provided by the implementation to the tester
   #
@@ -13,7 +13,7 @@ Feature: CAMARA Sample Implicit Events API, vwip - Operation getResource
 
   Background: Common getResource setup
     Given an environment at "apiRoot"
-    And the resource "/sample-implicit-events/vwip/resources/{resourceId}"
+    And the resource "/sample-implicit-events/v0.1alpha6/resources/{resourceId}"
     And the header "Authorization" is set to a valid access token
     And the header "x-correlator" complies with the schema at "#/components/schemas/XCorrelator"
     And the path parameter "resourceId" is set by default to the identifier of an existing resource
