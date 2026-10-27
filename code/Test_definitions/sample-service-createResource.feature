@@ -1,4 +1,4 @@
-Feature: CAMARA Sample Service API, vwip - Operation createResource
+Feature: CAMARA Sample Service API, v0.1.0-alpha.6 - Operation createResource
 
   # Input to be provided by the implementation to the tester
   #
@@ -15,7 +15,7 @@ Feature: CAMARA Sample Service API, vwip - Operation createResource
 
   Background: Common createResource setup
     Given an environment at "apiRoot"
-    And the resource "/sample-service/vwip/resources"
+    And the resource "/sample-service/v0.1alpha6/resources"
     And the header "Content-Type" is set to "application/json"
     And the header "Authorization" is set to a valid access token
     And the header "x-correlator" complies with the schema at "#/components/schemas/XCorrelator"

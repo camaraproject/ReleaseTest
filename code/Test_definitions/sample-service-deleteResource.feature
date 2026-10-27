@@ -1,4 +1,4 @@
-Feature: CAMARA Sample Service API, vwip - Operation deleteResource
+Feature: CAMARA Sample Service API, v0.1.0-alpha.6 - Operation deleteResource
 
   # Input to be provided by the implementation to the tester
   #
@@ -14,7 +14,7 @@ Feature: CAMARA Sample Service API, vwip - Operation deleteResource
 
   Background: Common deleteResource setup
     Given an environment at "apiRoot"
-    And the resource "/sample-service/vwip/resources/{resourceId}"
+    And the resource "/sample-service/v0.1alpha6/resources/{resourceId}"
     And the header "Authorization" is set to a valid access token
     And the header "x-correlator" complies with the schema at "#/components/schemas/XCorrelator"
     And the path parameter "resourceId" is set by default to the identifier of an existing resource
