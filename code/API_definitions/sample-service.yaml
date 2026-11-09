@@ -165,6 +165,9 @@ paths:
       summary: Get a resource by ID
       description: Returns the details of a specific resource identified by its ID.
       operationId: getResource
+      security:
+        - openIdX:
+            - sample-service:resource:read
       parameters:
         - $ref: "#/components/parameters/ResourceId"
         - $ref: "../common/CAMARA_common.yaml#/components/parameters/x-correlator"
@@ -214,7 +217,14 @@ paths:
 components:
   securitySchemes:
     openId:
-      $ref: "../common/CAMARA_common.yaml#/components/securitySchemes/openId"
+      type: oauth2
+      description: OAuth 2.0 client credentials (intentionally wrong for CAMARA, see .regression/REGRESSION.md).
+      flows:
+        clientCredentials:
+          tokenUrl: https://example.com/oauth2/token
+          scopes:
+            sample-service:resource:read: Read resources
+            sample-service:resource:write: Create and delete resources
   responses:
     # Option B example: locally defined error response.
     # Use this pattern when an operation returns API-specific error codes, or a

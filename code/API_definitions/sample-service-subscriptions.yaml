@@ -258,12 +258,6 @@ paths:
           $ref: "../common/CAMARA_common.yaml#/components/responses/NotFound404"
 
 components:
-  securitySchemes:
-    openId:
-      $ref: "../common/CAMARA_common.yaml#/components/securitySchemes/openId"
-    notificationsBearerAuth:
-      $ref: "../common/CAMARA_event_common.yaml#/components/securitySchemes/notificationsBearerAuth"
-
   parameters:
     SubscriptionId:
       name: subscriptionId
