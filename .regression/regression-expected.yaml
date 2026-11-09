@@ -1,0 +1,39 @@
+schema_version: 1
+branch: regression/r4.3-broken-spec-security-scheme
+description: 'broken-spec: security scheme shape and undefined requirement names (S-041..S-043);
+  r4.3 line'
+captured_at: '2026-11-09T09:15:58Z'
+captured_from_run: https://github.com/camaraproject/ReleaseTest/actions/runs/42591939515
+summary:
+  errors: 9
+  warnings: 1
+  hints: 4
+match_mode: exact
+findings:
+- rule_id: S-041
+  path: code/API_definitions/sample-service-subscriptions.yaml
+  level: error
+  count: 5
+- rule_id: S-041
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: S-042
+  path: code/API_definitions/sample-service-subscriptions.yaml
+  level: error
+- rule_id: S-042
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: S-043
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: warn
+- rule_id: S-302
+  path: code/API_definitions/sample-service.yaml
+  level: error
+- rule_id: S-313
+  path: code/API_definitions/sample-implicit-events.yaml
+  level: hint
+  count: 2
+- rule_id: S-313
+  path: code/API_definitions/sample-service.yaml
+  level: hint
+  count: 2
