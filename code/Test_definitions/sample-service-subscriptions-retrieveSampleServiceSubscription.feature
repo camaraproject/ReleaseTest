@@ -1,4 +1,4 @@
-Feature: CAMARA Sample Service Subscriptions API, vwip - Operation retrieveSampleServiceSubscription
+Feature: CAMARA Sample Service Subscriptions API, v0.1.0-alpha.6 - Operation retrieveSampleServiceSubscription
 
   # Input to be provided by the implementation to the tester
   #
@@ -12,7 +12,7 @@ Feature: CAMARA Sample Service Subscriptions API, vwip - Operation retrieveSampl
 
   Background: Common retrieveSampleServiceSubscription setup
     Given an environment at "apiRoot"
-    And the resource "/sample-service-subscriptions/vwip/subscriptions/{subscriptionId}"
+    And the resource "/sample-service-subscriptions/v0.1alpha6/subscriptions/{subscriptionId}"
     And the header "Authorization" is set to a valid access token
     And the header "x-correlator" complies with the schema at "#/components/schemas/XCorrelator"
     And the path parameter "subscriptionId" is set by default to the identifier of an existing subscription
